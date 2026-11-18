@@ -1,0 +1,1656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ouvroir de Rhei</title>
+<meta name="description" content="Ouvroir de Rhei — an open workroom for curiosity. A handmade scrapbook of experiments, essays and things made real, by Rhei Tan.">
+<meta name="author" content="Rhei Tan">
+<meta name="theme-color" content="#1c1915">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ouvroir de Rhei">
+<meta property="og:description" content="An open workroom for curiosity. Mundane magic, sewn by hand.">
+<meta property="og:url" content="https://iehrhei.github.io/">
+<meta property="og:image" content="https://iehrhei.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="fonts/reenie-beanie-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/homemade-apple-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Homemade Apple';src:url(fonts/homemade-apple-latin-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Reenie Beanie';src:url(fonts/reenie-beanie-latin-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Special Elite';src:url(fonts/special-elite-latin-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Courier Prime';src:url(fonts/courier-prime-latin-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Courier Prime';src:url(fonts/courier-prime-latin-ext-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:'Old Standard TT';src:url(fonts/old-standard-tt-latin-400-normal.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Old Standard TT';src:url(fonts/old-standard-tt-latin-400-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
+</style>
+<style>
+/* Layout: a linen-bound scrapbook lying open on a tablecloth; real cloth photo for pages, thread drawn stitch by stitch */
+:root{
+  --desk:#2a2724;
+  --cloth:#efe5d1;
+  --ink:#2c2926;
+  --pencil:#6a655d;
+  --thread:#b0141c;
+  --slip:#f7f5ef;
+  --tape:rgba(214,200,168,.66);
+  --hand:"Reenie Beanie","Segoe Print","Bradley Hand",cursive;
+  --script:"Homemade Apple","Snell Roundhand","Segoe Script",cursive;
+  --label:"DM Mono","IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --typer:"Special Elite","Courier Prime","American Typewriter","Courier New",monospace;
+  --typed:"Courier Prime","Courier New",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  background:var(--desk) url(assets/darkcloth.jpg) center/900px auto;
+  color:var(--ink);font-family:var(--hand);
+  padding-block:clamp(14px,min(4vw,4vh),52px);
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  overflow-x:hidden;
+}
+body::before{ /* soft light falling across the table */
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(110% 85% at 35% 25%,rgba(255,240,215,.09),transparent 60%),radial-gradient(140% 120% at 50% 50%,transparent 50%,rgba(0,0,0,.45));
+}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px dashed var(--thread);outline-offset:4px}
+
+.book{max-width:1120px;margin-inline:auto;position:relative;z-index:1}
+.spread{
+  position:relative;display:grid;grid-template-columns:1fr 1fr;
+  /* every spread is the same size; pages fit their content to it */
+  height:clamp(460px,calc(100vh - 120px),760px);
+  height:clamp(460px,calc(100dvh - 120px),760px);
+  /* stacked leaves under the open pages */
+  filter:drop-shadow(0 26px 34px rgba(0,0,0,.55)) drop-shadow(0 4px 6px rgba(0,0,0,.45));
+}
+.spread::after{
+  content:"";position:absolute;inset:6px -5px -7px;z-index:-1;border-radius:4px;
+  background:repeating-linear-gradient(0deg,#e4e1da 0 1px,#d2cec5 1px 2px);
+}
+.spread[hidden]{display:none!important}
+.page{
+  position:relative;min-width:0;min-height:0;overflow:hidden;isolation:isolate;
+  background:var(--cloth);
+  padding:clamp(28px,5vw,64px) clamp(22px,4.5vw,60px) clamp(52px,6vw,76px);
+  display:flex;flex-direction:column;
+}
+.page::before{ /* the cloth itself */
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:url(assets/paper.jpg) center/cover;
+}
+.page.r::before{transform:scaleY(-1)}
+.page::after{ /* gutter shadow and curl */
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:multiply;
+}
+.page.l{border-radius:4px 0 0 4px}
+.page.r{border-radius:0 4px 4px 0}
+.page.l::after{background:linear-gradient(90deg,rgba(255,255,255,0) 0,rgba(0,0,0,0) 78%,rgba(88,76,60,.18) 93%,rgba(70,58,44,.42) 100%),linear-gradient(90deg,rgba(100,90,75,.12),transparent 6%)}
+.page.r::after{background:linear-gradient(270deg,rgba(0,0,0,0) 78%,rgba(88,76,60,.18) 93%,rgba(70,58,44,.42) 100%),linear-gradient(270deg,rgba(100,90,75,.12),transparent 6%)}
+.page.l{border-right:1px solid rgba(90,78,62,.25)}
+
+/* everything written or printed sinks into the weave */
+.ink,.page h1,.page h2,.page p,.page li,.toc a,.folio{mix-blend-mode:multiply}
+
+.folio{position:absolute;bottom:24px;font-family:var(--typed);font-size:.72rem;letter-spacing:.08em;color:var(--pencil)}
+.page.l .folio{left:clamp(22px,4.5vw,60px)}
+.page.r .folio{right:clamp(22px,4.5vw,60px)}
+
+.spread.enter .page.l{animation:inL .6s cubic-bezier(.2,.7,.2,1) both}
+.spread.enter .page.r{animation:inR .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes inL{from{opacity:.2}to{opacity:1}}
+@keyframes inR{from{opacity:0;transform:perspective(1600px) rotateY(-16deg);transform-origin:left center}to{opacity:1;transform:none}}
+
+/* ---------- cover ---------- */
+.cover{align-items:center;justify-content:center;text-align:center;gap:14px}
+.logo{display:block;width:min(var(--lw,300px),74%);transition:transform .4s ease}
+.logo:hover{transform:rotate(-.8deg) translateY(-2px)}
+.logo-art{position:relative;display:block;transform:rotate(-1deg);filter:drop-shadow(.4px .8px .3px rgba(70,20,16,.4)) drop-shadow(1px 2.5px 2px rgba(70,40,25,.16))}
+.logo-art img{width:100%;height:auto;display:block}
+.logo-art .bells,.logo-art .star{position:absolute;inset:0;will-change:transform,opacity}
+.begin{position:absolute;left:0;right:0;margin:0;transform:translateY(-50%);text-align:center;font-family:var(--typed);font-size:.7rem;letter-spacing:.16em;color:var(--pencil);mix-blend-mode:multiply;animation:breathe 3.2s ease-in-out infinite;pointer-events:none}
+.begin[hidden]{display:none}
+@keyframes breathe{0%,100%{opacity:.4}50%{opacity:.95}}
+.motto{display:block;width:min(240px,62%);height:auto;margin:10px 0 0;transform:rotate(-2deg)}
+
+/* ---------- contents ---------- */
+.toc-wrap{display:flex;flex-direction:column;flex:1}
+body:not(.opened) .toc-wrap{pointer-events:none}
+/* ink arriving left to right, a soft wet edge in front of the pen */
+.wr{opacity:0}
+.wr.on{opacity:1;transition:opacity 1.8s cubic-bezier(.4,0,.2,1)}
+.toc-title{font-family:var(--script);font-size:calc(clamp(1.3rem,2.4vw,1.7rem) * var(--ts,1));font-weight:400;margin:6px 0 calc(30px * var(--ts,1));color:var(--ink)}
+.toc{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.toc a{display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:10px;text-decoration:none;font-size:calc(clamp(1.55rem,2.6vw,2.05rem) * var(--ts,1));line-height:1.15;padding:calc(4px * var(--ts,1)) 0}
+.toc .dots{border-bottom:2px dotted rgba(70,64,56,.4);transform:translateY(-6px)}
+.toc .n{font-family:var(--typed);font-size:.78rem;color:var(--pencil)}
+.toc .t{position:relative}
+.toc .t canvas{position:absolute;left:-3px;bottom:-9px;width:calc(100% + 8px);height:12px;pointer-events:none}
+.cover-r.tight .toc-note{display:none}
+.toc-note{margin-top:auto;padding-top:calc(28px * var(--ts,1));font-size:calc(1.25rem * var(--ts,1));color:var(--pencil);max-width:30ch}
+
+/* ---------- work pages ---------- */
+.motif{width:min(330px,90%);align-self:center;margin:4px 0 20px}
+.motif canvas{width:100%;height:auto;display:block}
+/* a strip cut from a typed sheet: each one cut, typed and laid down a little differently (set per strip in script) */
+.tag-wrap{position:relative;align-self:flex-start;margin:2px 0 18px var(--ml,0px);transform:rotate(var(--rot,-1deg)) translateY(var(--dy,0px));
+  filter:drop-shadow(0 .5px .3px rgba(40,30,20,.32))}
+.tag-wrap::before{ /* the end that has curled up throws a longer, softer shadow */
+  content:"";position:absolute;inset:3px 4px 0;z-index:-1;border-radius:2px;filter:blur(3.5px);
+  background:linear-gradient(var(--sd,90deg),rgba(40,30,20,0) 35%,rgba(40,30,20,.34));transform:translate(calc(var(--sx,2px) + var(--shx,0px)),calc(3px + var(--shy,0px))) skewY(var(--sk,.8deg))}
+.tag{
+  display:block;position:relative;
+  font-family:var(--typer);font-size:.84rem;letter-spacing:.015em;color:#262320;line-height:1.15;white-space:nowrap;
+  padding:var(--pt,8px) var(--pr,15px) var(--pb,7px) var(--pl,13px);
+  background:#f3f1ec url(assets/slip.jpg) var(--bx,0) var(--by,0)/600px 300px;
+  clip-path:var(--cut);
+}
+.tag::after{ /* the lifted end catches a little more light */
+  content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(var(--sd,90deg),rgba(255,255,255,0) 60%,rgba(255,255,255,.35))}
+.tag .dot{margin:0 .42em}
+.tag .ch{display:inline-block}
+.work h2{font-family:var(--script);font-weight:400;font-size:calc(clamp(1.45rem,2.6vw,1.95rem) * var(--ts,1));margin:6px 0 10px;line-height:1.5;text-wrap:balance}
+.work{justify-content:center}
+.work p{font-size:calc(clamp(1.38rem,2vw,1.6rem) * var(--ts,1));line-height:1.18;margin:0 0 .5em;max-width:min(100%,27rem)}
+.work .aside{color:var(--pencil);font-size:calc(clamp(1.2rem,1.7vw,1.38rem) * var(--ts,1))}
+#p-whos-rhei .snap{margin-bottom:12px}
+.work a.place{color:var(--thread);text-decoration:none;background:linear-gradient(var(--thread),var(--thread)) 0 92%/100% 1.5px no-repeat;padding-bottom:1px}
+.go{align-self:flex-start;margin-top:8px;font-size:calc(1.55rem * var(--ts,1));text-decoration:none;position:relative;color:var(--thread)}
+.go.shut{color:var(--pencil);cursor:default}
+.go.shut::after{display:none}
+.go::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:repeating-linear-gradient(90deg,var(--thread) 0 6px,transparent 6px 10px)}
+/* Questions: titles cut from a newspaper, a book and a magazine; each opens its essay once it is written (make .clip-in an <a href>) */
+.clips{list-style:none;margin:calc(12px * var(--ts,1)) 0 0;padding:0;display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:27rem}
+.clip{position:relative;width:86%;filter:drop-shadow(0 .6px .4px rgba(50,38,26,.38)) drop-shadow(1px 4px 5px rgba(40,28,18,.2))}
+.clip+.clip{margin-top:calc(22px * var(--ts,1))}
+.clip-in{display:block;position:relative;color:#1f1c19;text-decoration:none;padding:calc(9px * var(--ts,1)) calc(13px * var(--ts,1)) 0;clip-path:var(--cut);transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,.7,.2,1)}
+a.clip-in:hover{transform:rotate(var(--r,0deg)) translateY(-3px)}
+.clip-in::after{content:"";position:absolute;inset:0;background:url(assets/paper.jpg) var(--bx,0) var(--by,0)/420px;mix-blend-mode:multiply;opacity:.55;pointer-events:none}
+.clip .kick,.clip .hed,.clip .frag{display:block;position:relative}
+.clip .frag{overflow:hidden;height:calc(var(--lh) * 2.55);line-height:var(--lh);margin-top:calc(6px * var(--ts,1))}
+.clip.mag{--r:-.6deg;margin-left:4%;--cut:polygon(.8% 0,100% 1.2%,99.5% 100%,61% 98.8%,0 100%,0 3%)}
+.clip.mag:nth-child(1){--r:-1.1deg;margin-left:1%;--cut:polygon(0 1.5%,46% 0,100% .8%,99.4% 55%,100% 100%,38% 99%,.5% 100%,0 46%)}
+.clip.mag:nth-child(2){--r:.9deg;margin-left:11%;--cut:polygon(.6% 0,57% .9%,100% 0,100% 62%,99.3% 100%,48% 99.2%,0 100%,.4% 38%)}
+.clip.mag .clip-in{background:#f4f1ea;font-family:"Old Standard TT",Georgia,serif;padding-left:calc(15px * var(--ts,1))}
+.clip.mag .clip-in::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:#2d3a44;opacity:.75}
+.clip.mag .kick{font-family:var(--typed);font-size:calc(.5rem * var(--ts,1) + 2px);letter-spacing:.24em;text-transform:uppercase;color:#2d3a44}
+.clip.mag .hed{font-style:italic;font-size:calc(1.08rem * var(--ts,1) + 2px);line-height:1.1;margin-top:3px}
+.clip.mag .frag{--lh:calc(11.5px * var(--ts,1) + 2px);font-size:calc(9.5px * var(--ts,1) + 1.5px)}
+.clip .soon{position:absolute;right:-2px;bottom:calc(-15px * var(--ts,1));font-family:var(--hand);font-size:calc(1.05rem * var(--ts,1));color:var(--pencil);transform:rotate(-3deg);white-space:nowrap}
+.clip:nth-child(2) .soon{right:auto;left:-6px}
+.mark{align-self:center;margin:0 0 14px;width:calc(var(--ph,230px) * .36);transform:rotate(-4deg);mix-blend-mode:multiply;opacity:.72}
+.mark img{display:block;width:100%;height:auto}
+.work .sign{font-family:var(--script);font-size:calc(1.35rem * var(--ts,1));line-height:1.3;margin:6px 0 4px;transform:rotate(-2deg);transform-origin:0 50%;color:var(--ink)}
+.work .sign span{display:block;font-family:var(--typed);font-size:.62rem;letter-spacing:.12em;color:var(--pencil);transform:rotate(2deg);margin-top:4px;line-height:1.4}
+.list{margin:0;padding:0;list-style:none;font-size:calc(clamp(1.32rem,1.9vw,1.52rem) * var(--ts,1));line-height:1.2;display:grid;gap:4px;max-width:min(100%,27rem)}
+.list li::before{content:"✕ ";color:var(--thread);font-family:var(--typed);font-size:.8rem}
+
+.nav{position:relative;display:flex;justify-content:center;gap:20px;margin-top:22px;font-family:var(--typed);font-size:.78rem;letter-spacing:.08em;color:#d9d0c1;font-weight:400}
+.nav button:hover{color:var(--thread)}
+.nav button[disabled]{opacity:.3;cursor:default}
+
+
+/* ---------- archive photos taped onto the page ---------- */
+.snap{position:relative;align-self:center;margin:14px 0 18px;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:70%}
+.snap .frame{position:relative;display:block;width:max-content;max-width:100%;background:#f6f2e8;padding:7px;transform:rotate(-1.1deg);
+  box-shadow:0 1px 1px rgba(60,45,30,.25),0 6px 12px -6px rgba(50,35,20,.35)}
+.page.r .snap .frame{transform:rotate(.9deg)}
+.snap .photo{display:block;position:relative;overflow:hidden}
+.snap .photo img{display:block;width:calc(var(--ph,230px) * var(--w,1));max-width:100%;height:auto}
+/* one darkroom for every print; digital works come out of the riso instead */
+.snap[data-mount=riso] .photo::after,.snap[data-mount=deckle] .photo::after,.snap[data-mount=cutout] .photo::after{display:none}
+.snap.sewn[data-mount=deckle] .photo,.snap.sewn[data-mount=cutout] .photo{background:none}
+.snap.sewn[data-mount=cutout] .frame{filter:drop-shadow(0 .6px .4px rgba(60,45,30,.5)) drop-shadow(1px 3px 3px rgba(40,28,18,.22))}
+.snap.sewn[data-mount=cutout] .frame::before{inset:4% 3% -2% 4%;border-radius:50%;background:radial-gradient(closest-side,rgba(40,28,18,.34),rgba(40,28,18,.14) 80%,transparent)}
+.snap .vellum{position:absolute;left:0;right:-6%;bottom:-6%;height:36%;z-index:1;transform:rotate(-2.4deg);transform-origin:0 100%;
+  background:linear-gradient(rgba(255,253,246,.5),rgba(255,253,246,0) 6px),linear-gradient(178deg,rgba(250,246,235,.72),rgba(245,239,225,.64) 55%,rgba(238,231,214,.7));
+  clip-path:polygon(0 3%,9% 1.5%,19% 3.5%,31% 1%,44% 2.8%,57% .5%,70% 3%,83% 1.2%,100% 2.5%,100% 100%,0 100%);
+  display:flex;align-items:flex-end;justify-content:flex-end;padding:0 12px 9px}
+.snap .vellum span{font-family:var(--typed);font-size:.6rem;letter-spacing:.12em;color:var(--ink);opacity:.72}
+.snap .photo::after{content:"";position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;
+  background:radial-gradient(120% 100% at 50% 45%,transparent 55%,rgba(110,80,40,.28)),linear-gradient(160deg,rgba(255,240,200,.12),rgba(120,90,50,.12))}
+.snap .tape{position:absolute;width:56px;height:18px;background:var(--tape);box-shadow:0 0 0 .5px rgba(150,130,90,.25);mix-blend-mode:multiply}
+.snap .tape.t1{top:-9px;left:-14px;transform:rotate(-38deg)}
+.snap .tape.t2{bottom:-8px;right:-16px;transform:rotate(-34deg)}
+.snap figcaption{font-family:var(--label);font-weight:400;font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--ink);mix-blend-mode:multiply;text-align:center;max-width:34ch;line-height:1.5;opacity:.82;margin-top:4px}
+.snap .stamp{position:absolute;top:-24px;left:50%;transform:translateX(-50%) rotate(-2deg);font-family:var(--typed);font-weight:700;font-size:.8rem;letter-spacing:.12em;color:#3a3530;opacity:.78;mix-blend-mode:multiply;border:1.5px solid currentColor;padding:1px 6px;border-radius:2px}
+.snap.empty .frame{background:none;box-shadow:none;padding:0;transform:rotate(-.6deg)}
+.snap.empty .tape{display:none}
+.snap .mount{display:block;position:relative;aspect-ratio:4/3;width:min(var(--ph,230px),58vw);max-width:100%}
+.snap .ghost{position:absolute;left:-14px;top:-14px;width:calc(100% + 28px);height:calc(100% + 28px);pointer-events:none}
+.snap.empty .pending,.snap.empty .pc{display:none}
+.snap .pending{font-family:var(--typed);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pencil);mix-blend-mode:multiply}
+.snap .pc{position:absolute;width:22px;height:22px;background:#2b2724;box-shadow:0 1px 1px rgba(0,0,0,.25)}
+.snap .pc.tl{top:-4px;left:-4px;clip-path:polygon(0 0,100% 0,0 100%)}
+.snap .pc.tr{top:-4px;right:-4px;clip-path:polygon(0 0,100% 0,100% 100%)}
+.snap .pc.bl{bottom:-4px;left:-4px;clip-path:polygon(0 0,0 100%,100% 100%)}
+.snap .pc.br{bottom:-4px;right:-4px;clip-path:polygon(100% 0,100% 100%,0 100%)}
+
+/* a photo stitched straight onto the page */
+.snap.sewn .frame{background:none;padding:0;box-shadow:none;filter:drop-shadow(0 .5px .3px rgba(60,45,30,.45))}
+.snap.sewn .frame::before{content:"";position:absolute;left:1%;right:1%;top:6%;bottom:-3px;z-index:-1;pointer-events:none;filter:blur(4px);background:radial-gradient(40% 55% at 0% 100%,rgba(40,28,18,.42),transparent 70%),radial-gradient(40% 55% at 100% 100%,rgba(40,28,18,.36),transparent 70%),linear-gradient(rgba(40,28,18,0),rgba(40,28,18,.16));transform:translate(calc(1px + var(--shx,0px)),calc(3px + var(--shy,0px)))}
+.snap.sewn .photo{background:#e9dfc8}
+.snap .scuff{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.snap.sewn .tape{display:none}
+.snap .sew{position:absolute;left:-60px;top:-40px;width:calc(100% + 120px);height:calc(100% + 130px);pointer-events:none;z-index:2}
+/* ---------- page turn ---------- */
+.flip{position:absolute;left:0;right:0;top:0;z-index:6;perspective:3800px;perspective-origin:50% 45%}
+.flip .under{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;filter:drop-shadow(0 26px 34px rgba(0,0,0,.5))}
+.flip .under>.page,.flip .face>.page{height:100%;animation:none!important}
+.flip .cast{position:absolute;top:0;bottom:0;pointer-events:none;opacity:0;z-index:2}
+.flip .strip{position:absolute;top:0;height:100%;transform-style:preserve-3d;z-index:3;will-change:transform}
+.flip .strip.fwd{transform-origin:0 50%}
+.flip .strip.bwd{transform-origin:100% 50%}
+.flip .face{position:absolute;inset:0;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip .face>.page{position:absolute;top:0;border-radius:0}
+.flip .hole-mark{position:absolute;width:0;height:0}
+.flip .face.back{transform:rotateY(180deg)}
+.flip .face .sh{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;z-index:4}
+body.turning,body.turning *{user-select:none;-webkit-user-select:none}
+#thread{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+/* ---------- candlelight: the room is dark, one small flame moves with the reader ---------- */
+.candle{position:fixed;inset:0;pointer-events:none;z-index:60;transition:opacity 1.2s ease}
+.candle.dark{mix-blend-mode:multiply;
+  background:radial-gradient(circle var(--cr,60vmax) at var(--cx,50%) var(--cy,45%),#fff6e6 0%,#f7e2bf 14%,#d9b88c 34%,#8f6c4a 62%,#3f2c1d 86%,#2a1d13 100%)}
+.candle.glow{mix-blend-mode:screen;
+  background:radial-gradient(circle calc(var(--cr,60vmax) * .42) at var(--cx,50%) var(--cy,45%),rgba(255,176,92,var(--ca,.14)),rgba(255,150,70,0) 100%)}
+body.unlit .candle{opacity:0}
+/* the candle itself, standing on the cloth beside the book */
+.nav{align-items:center}
+.flame{font-size:1.05rem;line-height:1;padding:2px 4px;filter:drop-shadow(0 0 6px rgba(255,180,90,.55));transition:filter .6s,opacity .6s}
+.flame span{display:inline-block;transform-origin:50% 90%;animation:flicker 2.6s ease-in-out infinite}
+@keyframes flicker{0%,100%{transform:rotate(-1.5deg) scaleY(1)}30%{transform:rotate(1deg) scaleY(1.03)}55%{transform:rotate(-.5deg) scaleY(.98)}80%{transform:rotate(1.4deg) scaleY(1.02)}}
+body.unlit .flame{filter:grayscale(1) brightness(1.4);opacity:.45}
+body.unlit .flame span{animation:none}
+.flame:hover,body.unlit .flame:hover{opacity:1}
+.hush{position:relative;font-size:1rem;line-height:1;padding:2px 4px;transition:filter .4s,opacity .4s}
+.hush::after{content:"";position:absolute;left:2px;right:2px;top:50%;height:1.5px;background:#d9d0c1;transform:rotate(-40deg) scaleX(0);transition:transform .3s;border-radius:1px}
+body.deaf .hush{filter:grayscale(1);opacity:.45}
+body.deaf .hush::after{transform:rotate(-40deg) scaleX(1)}
+.work.end{justify-content:center;align-items:center;text-align:center}
+.work.end .fin{display:flex;flex-direction:column;align-items:center;gap:calc(6px * var(--ts,1));font-size:calc(clamp(1.7rem,2.6vw,2.1rem) * var(--ts,1));line-height:1.1;margin:0 0 calc(26px * var(--ts,1))}
+.work.end .fin s{text-decoration:none;color:var(--pencil);position:relative;opacity:.8}
+/* crossed out in pencil, two quick strokes each */
+.work.end .fin s::after{content:"";position:absolute;left:-6%;right:-6%;top:52%;height:2px;background:var(--pencil);opacity:.75;border-radius:2px;transform:rotate(-2.5deg)}
+.work.end .fin s:nth-child(2)::after{transform:rotate(1.8deg);top:48%}
+.work.end .fin span{color:var(--ink);transform:rotate(-1.5deg);margin-top:2px}
+.endpaper{background:#7d7466 url(assets/linen.jpg) center/520px;background-blend-mode:multiply}
+.endpaper::before{display:none}
+.endpaper .blind{position:absolute;left:50%;top:50%;width:64px;height:76px;transform:translate(-50%,-50%);background:url(assets/stamp.png) center/contain no-repeat;opacity:.22;filter:brightness(.4) drop-shadow(.6px .8px 0 rgba(255,245,225,.35));mix-blend-mode:multiply}
+.work.end .go{align-self:center}
+.work p.credit{position:absolute;left:clamp(22px,4.5vw,60px);bottom:44px;margin:0;font-family:var(--typed);font-size:.54rem;letter-spacing:.04em;line-height:1.45;color:var(--pencil);max-width:56ch;opacity:.85}
+#p-fin{padding-bottom:calc(clamp(52px,6vw,76px) + 44px)}
+#p-fin p.credit{left:0;right:0;margin-inline:auto;text-align:center;max-width:52ch;padding-inline:20px}
+.work p.credit a{color:inherit;text-decoration:underline;text-decoration-color:rgba(106,101,93,.45);text-underline-offset:2px}
+.hush:hover,body.deaf .hush:hover{opacity:1}
+@media (pointer:fine){body.needle-ready,body.needle-ready a,body.needle-ready button{cursor:none}}
+
+@media (max-width:760px){
+  .spread{grid-template-columns:1fr;min-height:0;height:auto}
+  .page{overflow:visible}
+  .spread::after{inset:5px -3px -6px}
+  .page{min-height:78vh}
+  .page.l{border-radius:4px 4px 0 0;border-right:0;border-bottom:1px solid rgba(90,78,62,.25)}
+  .page.r{border-radius:0 0 4px 4px}
+  .page.l::after{background:linear-gradient(180deg,transparent 85%,rgba(70,58,44,.3))}
+  .page.r::after{background:linear-gradient(0deg,transparent 85%,rgba(70,58,44,.3))}
+  .page.r.cover-r{min-height:auto}
+  .work p.credit{position:static;margin-top:22px;max-width:none}
+  .tag-wrap{max-width:100%}
+  #p-fin{padding-bottom:clamp(52px,6vw,76px)}
+  .endpaper{min-height:28vh}
+}
+@media (max-width:420px){.tag{font-size:.72rem;letter-spacing:0}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<filter id="press" x="-2%" y="-10%" width="104%" height="120%" color-interpolation-filters="sRGB">
+<feTurbulence type="fractalNoise" baseFrequency=".95" numOctaves="2" seed="4" result="g"/>
+<feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -3.2 2.55" result="pit"/>
+<feComposite in="SourceGraphic" in2="pit" operator="in" result="a"/>
+<feTurbulence type="fractalNoise" baseFrequency=".022 .05" numOctaves="2" seed="11" result="b"/>
+<feColorMatrix in="b" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.5 1.5" result="fade"/>
+<feComposite in="a" in2="fade" operator="in" result="c"/>
+<feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="1" seed="2" result="d"/>
+<feDisplacementMap in="c" in2="d" scale=".9" xChannelSelector="R" yChannelSelector="G"/>
+</filter></defs></svg>
+<canvas id="thread" aria-hidden="true"></canvas>
+<div class="candle dark" aria-hidden="true"></div><div class="candle glow" aria-hidden="true"></div>
+
+
+<main class="book" id="book">
+
+  <section class="spread" data-spread="0">
+    <div class="page l cover">
+      <button class="logo" id="logo" aria-label="Open the book: Ouvroir de Rhei" data-anchor>
+        <span class="logo-art" role="img" aria-label="Ouvroir de Rhei, a filet-crochet oval with a lily of the valley"><img src="assets/logo-base.webp" alt="" width="720" height="1131"><img class="bells" src="assets/logo-lily-bells.webp" alt="" width="720" height="1131" style="transform-origin:34.68% 64.79%"><img class="star" src="assets/logo-star0.webp" alt="" width="720" height="1131" style="transform-origin:72.44% 42.01%"><img class="star" src="assets/logo-star1.webp" alt="" width="720" height="1131" style="transform-origin:73.24% 44.58%"><img class="star" src="assets/logo-star2.webp" alt="" width="720" height="1131" style="transform-origin:72.44% 46.64%"><img class="star" src="assets/logo-star3.webp" alt="" width="720" height="1131" style="transform-origin:62.74% 43.04%"><img class="star" src="assets/logo-star4.webp" alt="" width="720" height="1131" style="transform-origin:63.55% 45.09%"><img class="star" src="assets/logo-star5.webp" alt="" width="720" height="1131" style="transform-origin:52.30% 44.58%"><img class="star" src="assets/logo-star6.webp" alt="" width="720" height="1131" style="transform-origin:49.88% 53.80%"><img class="star" src="assets/logo-star7.webp" alt="" width="720" height="1131" style="transform-origin:45.84% 63.53%"><img class="star" src="assets/logo-star8.webp" alt="" width="720" height="1131" style="transform-origin:45.03% 66.11%"><img class="star" src="assets/logo-star9.webp" alt="" width="720" height="1131" style="transform-origin:45.84% 68.68%"><img class="star" src="assets/logo-star10.webp" alt="" width="720" height="1131" style="transform-origin:45.84% 71.76%"></span>
+      </button>
+      <canvas class="motto" id="motto" width="792" height="156" role="img" aria-label="mundane magic"></canvas>
+      <p class="begin" id="begin" hidden>touch the page to begin</p>
+      <span class="folio">i</span>
+    </div>
+    <div class="page r cover-r">
+      <div class="toc-wrap">
+        <h1 class="toc-title">what I made, more or less</h1>
+        <ol class="toc">
+          <li><a href="#whos-rhei"><span class="t">Who's Rhei</span><span class="dots"></span><span class="n">p. 1</span></a></li>
+          <li><a href="#daybook"><span class="t">Daybook</span><span class="dots"></span><span class="n">p. 2</span></a></li>
+          <li><a href="#vita-obscura"><span class="t">Vita Obscura</span><span class="dots"></span><span class="n">p. 3</span></a></li>
+          <li><a href="#buen-camino"><span class="t">Buen Camino</span><span class="dots"></span><span class="n">p. 4</span></a></li>
+          <li><a href="#frontier-nature-trust"><span class="t">Frontier Nature Trust</span><span class="dots"></span><span class="n">p. 5</span></a></li>
+          <li><a href="#lab-of-labs"><span class="t">Lab of Labs</span><span class="dots"></span><span class="n">p. 6</span></a></li>
+          <li><a href="#opus-void"><span class="t">OPUS.VOID</span><span class="dots"></span><span class="n">p. 7</span></a></li>
+          <li><a href="#ancient-table"><span class="t">The Ancient Table</span><span class="dots"></span><span class="n">p. 8</span></a></li>
+          <li><a href="#questions"><span class="t">Questions</span><span class="dots"></span><span class="n">p. 9</span></a></li>
+          <li><a href="#colophon"><span class="t">Colophon</span><span class="dots"></span><span class="n">p. 10</span></a></li>
+        </ol>
+        <p class="toc-note">The scrapbook of a small workroom for curiosity, experiments and making things real. One page for each thing, sewn in as it happened.</p>
+      </div>
+      <span class="folio">ii</span>
+    </div>
+  </section>
+
+  <section class="spread" data-spread="1" hidden>
+    <article class="page l work" id="p-whos-rhei">
+      <figure data-anchor class="snap sewn" data-sew="line" data-mount="deckle" style="--w:.76"><span class="frame"><span class="photo"><img src="assets/print-rhei.webp" width="590" height="863" alt="Rhei as a small child, standing on old stone steps behind a line of grown-ups"></span><canvas class="sew" aria-hidden="true"></canvas></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 1<span class="dot">·</span>the one holding the needle</span></span>
+      <h2>Who's Rhei</h2>
+      <p>Born in Beibei, between a <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=%E7%BC%99%E4%BA%91%E5%B1%B1%20%E9%87%8D%E5%BA%86%E5%8C%97%E7%A2%9A" target="_blank" rel="noopener">mountain</a> and a <a class="place" href="https://www.google.com/maps/search/?api=1&amp;query=%E5%98%89%E9%99%B5%E6%B1%9F%20%E5%8C%97%E7%A2%9A" target="_blank" rel="noopener">river</a>. One taught me to stay, the other to wander.</p>
+      <p>Now in Shanghai, I remain a student of nature, curious about the world and all its forms of life.</p>
+      <p>This is my little workroom, a place to explore the unknown and make things simply because they deserve to exist.</p>
+      <p class="aside">I am expecting a beautiful century. Perhaps I am already in it.</p>
+      <span class="folio">1</span>
+    </article>
+    <article class="page r work" id="p-daybook">
+      <figure class="snap empty"><span class="frame"><span class="mount"><span class="pending">photo to come</span></span><i class="pc tl"></i><i class="pc tr"></i><i class="pc bl"></i><i class="pc br"></i><i class="tape t1"></i><i class="tape t2"></i></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 2<span class="dot">·</span>news aggregator</span></span>
+      <h2>Daybook</h2>
+      <p>The sources I trust, gathered into one brief. I read it twice a day: once with morning coffee, once when the day is done.</p>
+      <p class="aside">Curated by hand. Nothing ranked by clicks.</p>
+      <a class="go" href="https://daybook-brief.vercel.app/" target="_blank" rel="noopener">open the daybook →</a>
+      <span class="folio">2</span>
+    </article>
+  </section>
+
+  <section class="spread" data-spread="2" hidden>
+    <article class="page l work" id="p-vita-obscura">
+      <figure data-anchor class="snap sewn" data-sew="whip" style="--w:.88"><span class="frame"><span class="photo"><img src="assets/print-vita.jpg" width="606" height="638" alt="An old map of Europe with a hole cut through it, showing veins underneath and a pale sphere resting in front"></span><span class="vellum" aria-hidden="true"><span>from the English</span></span><canvas class="sew" aria-hidden="true"></canvas></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 3<span class="dot">·</span>essays, translated</span></span>
+      <h2>Vita Obscura</h2>
+      <p>A collection of essays I find and translate. Writing that stayed in the shade, carried over into another language one piece at a time.</p>
+      <p class="aside">Slow reading, by candlelight if possible.</p>
+      <span class="folio">3</span>
+    </article>
+    <article class="page r work" id="p-buen-camino">
+      <figure class="snap sewn" data-sew="corners" style="--w:.75"><span class="frame"><span class="photo"><img src="assets/print-camino.jpg" width="618" height="900" alt="Green cover of Buen Camino with a gold scallop shell"></span><canvas class="sew" aria-hidden="true"></canvas></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 4<span class="dot">·</span>an experiment</span></span>
+      <h2>Buen Camino</h2>
+      <p>An old map of the Camino de Santiago you can walk across, stage by stage, to plan a route on foot.</p>
+      <p class="aside">Follow the yellow arrows. Carry less.</p>
+      <a class="go" href="https://iehrhei.github.io/buen-camino/" target="_blank" rel="noopener">open the map →</a>
+      <span class="folio">4</span>
+    </article>
+  </section>
+
+  <section class="spread" data-spread="3" hidden>
+    <article class="page l work" id="p-frontier-nature-trust">
+      <figure data-anchor class="snap empty"><span class="frame"><span class="mount"><span class="pending">photo to come</span></span><i class="pc tl"></i><i class="pc tr"></i><i class="pc bl"></i><i class="pc br"></i><i class="tape t1"></i><i class="tape t2"></i></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 5<span class="dot">·</span>a trust for the unfamiliar</span></span>
+      <h2>Frontier Nature Trust</h2>
+      <p>A small trust I am building with <a class="place" href="https://x.com/Yang_Supertramp" target="_blank" rel="noopener">Yang</a>, for research at the edges of life and mind. Its Chinese name means vertigo: the dizziness you feel when the world turns out larger than you thought.</p>
+      <p>We back a few researchers at a time, across the ocean, molecules, the brain and the sky, in small steps, and look for the questions that tie their work together.</p>
+      <p>Far off, we imagine a world engine: models of many possible worlds, built from real data, where new forms of life could be met.</p>
+      <p class="aside">Early days. Still mostly questions.</p>
+      <span class="folio">5</span>
+    </article>
+    <article class="page r work" id="p-lab-of-labs">
+      <figure class="snap empty"><span class="frame"><span class="mount"><span class="pending">photo to come</span></span><i class="pc tl"></i><i class="pc tr"></i><i class="pc bl"></i><i class="pc br"></i><i class="tape t1"></i><i class="tape t2"></i></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 6<span class="dot">·</span>a study of laboratories</span></span>
+      <h2>Lab of Labs</h2>
+      <p>A field guide to the frontier labs of the world. It follows what each one is working on and who comes and goes, and opens every lab as a full dossier.</p>
+      <p>Each lab is drawn as a small invented organism and placed on a map twice: once by where it stands, once by what it studies.</p>
+      <p class="aside">A naturalist's notebook, kept on the people who keep notebooks.</p>
+      <span class="folio">6</span>
+    </article>
+  </section>
+
+  <section class="spread" data-spread="4" hidden>
+    <article class="page l work" id="p-opus-void">
+      <figure data-anchor class="snap sewn" data-sew="line" data-mount="riso" style="--w:.96"><span class="frame"><span class="photo"><img src="assets/riso-opus.jpg" width="800" height="705" alt="A cube made of music staves, floating in white space"></span><canvas class="sew" aria-hidden="true"></canvas></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 7<span class="dot">·</span>floating structures of sound</span></span>
+      <h2 aria-label="OPUS.VOID">opus.void</h2>
+      <p>A cube made of music staves, floating in white. Each face is a different material of sound: pure, glass, droplet, breath, distance, felt.</p>
+      <p>Ink a note on any face, turn the cube, and play them all at once: a small architecture you can listen to.</p>
+      <a class="go" href="https://iehrhei.github.io/opus-void/" target="_blank" rel="noopener">enter the void →</a>
+      <span class="folio">7</span>
+    </article>
+    <article class="page r work" id="p-ancient-table">
+      <figure class="snap sewn" data-sew="tack" data-mount="cutout" style="--w:1.04"><span class="frame"><span class="photo"><img src="assets/cut-table.webp" width="660" height="660" alt="A plate with a step-fret border, cut out and tacked onto the page"></span><canvas class="sew" aria-hidden="true"></canvas></span></figure>
+      <span class="tag-wrap"><span class="tag">No. 8<span class="dot">·</span>a self-service eatery across time</span></span>
+      <h2>The Ancient Table</h2>
+      <p>A little restaurant where the menu is history. Eight tables, from the Nile to the cacao groves of Tenochtitlan, each laid with its own printed plate.</p>
+      <p>Pick a dish and it opens like a small book: the story, the old source, then the cooking, one card at a time. The ingredients are checked against the city where you cook.</p>
+      <p class="aside">What did you eat today? Someone, a thousand years ago, asked the same.</p>
+      <span class="go shut">the doors open soon</span>
+      <span class="folio">8</span>
+    </article>
+  </section>
+
+  <section class="spread" data-spread="5" hidden>
+    <article class="page l work" id="p-questions">
+      <span class="tag-wrap"><span class="tag">No. 9<span class="dot">·</span>open file</span></span>
+      <h2>Questions</h2>
+      <p>A running list of questions I keep coming back to. None of them are finished.</p>
+      <ol class="clips" data-anchor>
+        <li class="clip mag"><span class="clip-in">
+          <span class="kick">Essay</span>
+          <span class="hed">How Little Does It Take to Build a Frontier Science Lab at Sea?</span>
+          <span class="frag">Strip a research vessel down to what a question actually needs: a hull, a bench, a few instruments that can be mended at sea, and people curious enough to stay out past the edge of the map</span>
+        </span><span class="soon">not yet written</span></li>
+        <li class="clip mag"><span class="clip-in">
+          <span class="kick">Essay</span>
+          <span class="hed">How Do You Build Seventy-Two Autonomous Philanthropic Artists?</span>
+          <span class="frag">Each one free to choose its own work, and each one giving as it makes, as if generosity were a medium like clay or light. Seventy-two is enough to fill a room, few enough to know every one by name</span>
+        </span><span class="soon">not yet written</span></li>
+        <li class="clip mag"><span class="clip-in">
+          <span class="kick">Essay</span>
+          <span class="hed">How Do You Turn a Life into a Game Others Can Play?</span>
+          <span class="frag">Every life already has its rules, its map, a few places to rest and save. The question is what happens when you hand someone else the pieces and let them walk it for a while</span>
+        </span><span class="soon">not yet written</span></li>
+      </ol>
+      <span class="folio">9</span>
+    </article>
+    <article class="page r work" id="p-colophon">
+      <figure class="mark" aria-hidden="true"><img src="assets/stamp.png" width="288" height="342" alt=""></figure>
+      <span class="tag-wrap"><span class="tag">colophon</span></span>
+      <h2>Ouvroir de Rhei</h2>
+      <p>An ouvroir was a workroom where people gathered to sew. This one is mine. It is the place where I feel safe enough to be curious.</p>
+      <p>Think of it as personal R&amp;D, with the door left open. Ideas come in loose. I try them, take them apart, and sometimes one of them becomes real.</p>
+      <p class="aside">Nothing here has to be finished.</p>
+      <p class="sign">Rhei<span>Shanghai, 2026</span></p>
+      <span class="folio">10</span>
+    </article>
+  </section>
+
+  <section class="spread" data-spread="6" hidden>
+    <article class="page l work end" id="p-fin">
+      <p class="fin" data-anchor><s>to be continued</s><s>to be crafted</s><span>to be imagineered…</span></p>
+      <a class="go" href="#contents">back to the contents ↺</a>
+      <p class="credit">night sounds: <a href="https://freesound.org/s/645971/" target="_blank" rel="noopener">“night at the forest lake nature atmo”</a> by Garuda1982, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Levelled and looped for this book. Chimes: <a href="https://freesound.org/s/263658/" target="_blank" rel="noopener">“Wind Chimes.aif”</a> by stefansmulovitz, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, trimmed, filtered and mixed under guitar harmonics.</p>
+      <span class="folio">11</span>
+    </article>
+    <article class="page r endpaper" aria-hidden="true">
+      <i class="blind"></i>
+    </article>
+  </section>
+
+  <nav class="nav" aria-label="Turn pages">
+    <button id="prev">← prev</button>
+    <button id="toContents">contents</button>
+    <button id="next">next →</button>
+    <button class="flame" id="candle" aria-pressed="true" aria-label="Blow out the candle" title="Blow out the candle"><span aria-hidden="true">🕯️</span></button>
+    <button class="hush" id="hush" aria-pressed="false" aria-label="Turn sound off" title="Turn sound off"><span aria-hidden="true">👂</span></button>
+  </nav>
+</main>
+
+<script>
+(() => {
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const DPR = Math.min(2, devicePixelRatio || 1);
+
+/* ---------- embroidery: thread colours, one stitch, one French knot ---------- */
+const PAL={
+  red:  {e:"#6e0a10",m:"#bd1b23",l:"#d6393e",tw:"rgba(70,0,6,.5)",hi:"rgba(255,190,185,.35)"},
+  rose: {e:"#86232a",m:"#cc4a4f",l:"#e07b7c",tw:"rgba(90,10,16,.42)",hi:"rgba(255,215,210,.4)"},
+  ochre:{e:"#7a5612",m:"#c4902c",l:"#e0b65c",tw:"rgba(80,50,0,.45)",hi:"rgba(255,240,200,.45)"},
+  ivory:{e:"#b3a383",m:"#efe6d3",l:"#fffbf2",tw:"rgba(120,96,60,.32)",hi:"rgba(255,255,255,.6)"},
+  steel:{e:"#33383d",m:"#9aa2a9",l:"#e4e8eb",tw:"rgba(20,24,28,.35)",hi:"rgba(255,255,255,.55)"}
+};
+function drawStitch(c,x0,y0,x1,y1,w,col,holes){
+  const P=PAL[col||"red"];
+  const dx=x1-x0,dy=y1-y0,L=Math.hypot(dx,dy)||1,ux=dx/L,uy=dy/L,nx=-uy,ny=ux;
+  if(holes!==false){c.fillStyle="rgba(55,40,30,.3)";c.beginPath();c.arc(x0-ux*.4,y0-uy*.4,w*.3,0,7);c.arc(x1+ux*.4,y1+uy*.4,w*.3,0,7);c.fill()}
+  c.lineCap="round";
+  c.strokeStyle="rgba(45,25,18,.24)";c.lineWidth=w*1.05;
+  c.beginPath();c.moveTo(x0+w*.22,y0+w*.42);c.lineTo(x1+w*.22,y1+w*.42);c.stroke();
+  const g=c.createLinearGradient(x0+nx*w/2,y0+ny*w/2,x0-nx*w/2,y0-ny*w/2);
+  g.addColorStop(0,P.e);g.addColorStop(.38,P.m);g.addColorStop(.58,P.l);g.addColorStop(1,P.e);
+  c.strokeStyle=g;c.lineWidth=w;
+  c.beginPath();c.moveTo(x0,y0);c.lineTo(x1,y1);c.stroke();
+  const n=Math.max(1,Math.round(L/(w*.95)));
+  c.strokeStyle=P.tw;c.lineWidth=Math.max(.3,w*.15);c.beginPath();
+  for(let i=1;i<n;i++){const t=i/n,cx=x0+dx*t,cy=y0+dy*t;
+    c.moveTo(cx+nx*w*.42-ux*w*.3,cy+ny*w*.42-uy*w*.3);c.lineTo(cx-nx*w*.42+ux*w*.3,cy-ny*w*.42+uy*w*.3)}
+  c.stroke();
+  if(L>w*1.6){c.strokeStyle=P.hi;c.lineWidth=Math.max(.25,w*.12);c.beginPath();
+    c.moveTo(x0+nx*w*.12+dx*.15,y0+ny*w*.12+dy*.15);c.lineTo(x1+nx*w*.12-dx*.15,y1+ny*w*.12-dy*.15);c.stroke()}
+}
+function drawKnot(c,x,y,r,col){
+  const P=PAL[col||"red"];
+  c.fillStyle="rgba(45,25,18,.28)";c.beginPath();c.arc(x+r*.25,y+r*.45,r*1.02,0,7);c.fill();
+  const g=c.createRadialGradient(x-r*.35,y-r*.4,r*.1,x,y,r);
+  g.addColorStop(0,P.l);g.addColorStop(.55,P.m);g.addColorStop(1,P.e);
+  c.fillStyle=g;c.beginPath();c.arc(x,y,r,0,7);c.fill();
+  c.strokeStyle=P.tw;c.lineWidth=r*.18;c.beginPath();c.arc(x,y,r*.55,.6,3.6);c.stroke();
+}
+
+/* ---------- turning drawings into stitches ---------- */
+const ns="http://www.w3.org/2000/svg",probe=document.createElementNS(ns,"svg");
+probe.setAttribute("width","0");probe.setAttribute("height","0");probe.style.position="absolute";document.body.appendChild(probe);
+function measure(d){const p=document.createElementNS(ns,"path");p.setAttribute("d",d);probe.appendChild(p);return p}
+function sampler(d){
+  const p=measure(d),T=p.getTotalLength();
+  const at=s=>{s=Math.max(0,Math.min(T,s));const a=p.getPointAtLength(s),b=p.getPointAtLength(Math.min(T,s+.5)),c0=p.getPointAtLength(Math.max(0,s-.5));
+    const dx=b.x-c0.x,dy=b.y-c0.y,l=Math.hypot(dx,dy)||1;return {x:a.x,y:a.y,nx:-dy/l,ny:dx/l}};
+  return {T,at,bbox:p.getBBox(),done:()=>p.remove()};
+}
+function build(items){
+  const out=[];
+  for(const it of items){
+    const col=it.col||"red";
+    if(it.t==="knot"){out.push({k:1,x:it.x,y:it.y,r:it.r||1.7,col});continue}
+    if(it.t==="star"){const s=it.s||4;
+      out.push({x0:it.x-s,y0:it.y,x1:it.x+s,y1:it.y,w:1.1,col},{x0:it.x,y0:it.y-s,x1:it.x,y1:it.y+s,w:1.1,col},
+               {x0:it.x-s*.5,y0:it.y-s*.5,x1:it.x+s*.5,y1:it.y+s*.5,w:.8,col},{x0:it.x+s*.5,y0:it.y-s*.5,x1:it.x-s*.5,y1:it.y+s*.5,w:.8,col});continue}
+    const S=sampler(it.d);
+    if(it.t==="back"||it.t==="run"||it.t==="floss"){
+      const len=it.len||(it.t==="run"?5:it.t==="floss"?7:4),gap=it.gap!=null?it.gap:(it.t==="run"?3:it.t==="floss"?0:.45);
+      for(let s=0;s+len*.45<=S.T;s+=len+gap){const a=S.at(s),b=S.at(s+len);
+        out.push({x0:a.x,y0:a.y,x1:b.x,y1:b.y,w:it.w||(it.t==="floss"?.9:1.35),col,holes:it.t!=="floss"})}
+    }else if(it.t==="stem"){ // overlapping slanted stitches, one row per offset
+      const offs=it.o||[0],len=it.len||6,step=it.step||2.5,sl=it.sl!=null?it.sl:.7;
+      for(const o of offs)for(let s=0;s+len*.5<=S.T;s+=step){const a=S.at(s),b=S.at(s+len);
+        out.push({x0:a.x+a.nx*(o+sl),y0:a.y+a.ny*(o+sl),x1:b.x+b.nx*(o-sl),y1:b.y+b.ny*(o-sl),w:it.w||1.45,col})}
+    }else if(it.t==="satin"){ // parallel floats laid across a closed shape
+      const clip=new Path2D(it.d);clip.rule=it.rule||"nonzero";const bb=S.bbox,a=(it.ang||0)*Math.PI/180,ux=Math.cos(a),uy=Math.sin(a),nx=-uy,ny=ux;
+      const cx=bb.x+bb.width/2,cy=bb.y+bb.height/2,R=Math.hypot(bb.width,bb.height)/2+2,gap=it.gap||1.55;
+      for(let s=-R;s<=R;s+=gap)out.push({x0:cx+nx*s-ux*R,y0:cy+ny*s-uy*R,x1:cx+nx*s+ux*R,y1:cy+ny*s+uy*R,w:it.w||1.6,col,clip,holes:false});
+      if(it.edge!==false)for(let s=0;s+2<=S.T;s+=3.4){const p=S.at(s),q=S.at(s+3.4);out.push({x0:p.x,y0:p.y,x1:q.x,y1:q.y,w:.95,col:it.edgeCol||col})}
+    }
+    S.done();
+  }
+  return out;
+}
+/* little generators for repeated shapes */
+const circ=(x,y,r)=>`M${x-r} ${y} a${r} ${r} 0 1 0 ${2*r} 0 a${r} ${r} 0 1 0 ${-2*r} 0`;
+function scribble(x0,y0,x1,y1,n,amp){ // cursive loops along a slanted line
+  const dx=(x1-x0)/n,dy=(y1-y0)/n;let d=`M${x0} ${y0}`;
+  for(let i=0;i<n;i++){const x=x0+dx*i,y=y0+dy*i,h=amp*(.7+.6*((i*37%11)/11));
+    d+=` C${x+dx*1.25} ${y+dy-h} ${x-dx*.2} ${y-h} ${x+dx} ${y+dy}`}
+  return d;
+}
+function glyphs(x0,y0,x1,y1,n,amp){ // an angular, unfamiliar script: the other language
+  const dx=(x1-x0)/n,dy=(y1-y0)/n;let d=`M${x0} ${y0}`;
+  for(let i=0;i<n;i++){const x=x0+dx*i,y=y0+dy*i,h=amp*(i%3===1?1.4:.8);
+    d+=` L${x+dx*.3} ${y+dy*.3-h} L${x+dx*.6} ${y+dy*.6} L${x+dx*.8} ${y+dy*.8-h*.5} L${x+dx} ${y+dy}`}
+  return d;
+}
+function ring(cx,cy,r,amp,k,a0,a1){
+  let d="";for(let a=a0;a<=a1+.01;a+=3){const t=a*Math.PI/180,rr=r+amp*Math.sin(t*k);
+    d+=(d?" L":"M")+(cx+Math.cos(t)*rr).toFixed(2)+" "+(cy+Math.sin(t)*rr).toFixed(2)}
+  return d;
+}
+const BELL="M-6,0 C-9,3 -10,9 -11,14 Q-8,12.5 -6,15.5 Q-3,13 0,15.8 Q3,13 6,15.5 Q8,12.5 11,14 C10,9 9,3 6,0 Q0,-2.5 -6,0 Z";
+const place=(d,tx,ty,s)=>d.replace(/(-?[\d.]+),(-?[\d.]+)/g,(_,x,y)=>`${(+x*s+tx).toFixed(2)} ${(+y*s+ty).toFixed(2)}`);
+
+/* ---------- the drawings, one per page (each on a 200 × 150 hoop) ---------- */
+const M={};
+M.daybook=(()=>{const it=[];
+  it.push({t:"satin",d:circ(54,24,8),ang:25,col:"ochre"});
+  for(let a=0;a<360;a+=40){const t=a*Math.PI/180;it.push({t:"back",d:`M${54+Math.cos(t)*11.5} ${24+Math.sin(t)*11.5} L${54+Math.cos(t)*16} ${24+Math.sin(t)*16}`,col:"ochre",w:1.1})}
+  it.push({t:"satin",d:"M161.19 28.33 A12 12 0 1 1 149.89 12.01 A10 10 0 0 0 161.19 28.33 Z",ang:-35});
+  it.push({t:"star",x:128,y:16,s:3,col:"ochre"},{t:"star",x:172,y:30,s:2.4,col:"ochre"});
+  it.push({t:"back",d:"M100 52 C80 42 52 40 30 46 L30 106 C52 100 80 102 100 112",w:1.6});
+  it.push({t:"back",d:"M100 52 C120 42 148 40 170 46 L170 106 C148 100 120 102 100 112",w:1.6});
+  it.push({t:"stem",d:"M100 52 V112",w:1.5});
+  for(let i=0;i<6;i++){const y=57+i*8,e=i===5?74:93;
+    it.push({t:"run",d:`M38 ${y} C55 ${y-4} 75 ${y-3} ${e} ${y+4}`,len:3.2,gap:1.6,col:"rose",w:1.05});
+    if(i!==2)it.push({t:"run",d:`M107 ${y+4} C125 ${y-3} 145 ${y-4} 162 ${y}`,len:3.2,gap:1.6,col:"rose",w:1.05})}
+  it.push({t:"satin",d:"M120 72 h30 v14 h-30 Z",ang:90,col:"rose",gap:1.4});
+  it.push({t:"back",d:"M30 106 L28 110 C52 106 80 108 100 118 C120 108 148 106 172 110 L170 106",col:"rose",w:1.2});
+  it.push({t:"back",d:"M28 110 L27 114 C52 110 80 112 100 122 C120 112 148 110 173 114 L172 110",col:"rose",w:1.2});
+  it.push({t:"satin",d:"M98.5 112 L98.5 138 L101.5 133 L104.5 138 L104.5 112 Z",ang:90});
+  return it})();
+M.vita=(()=>{const it=[];
+  it.push({t:"star",x:46,y:20,s:4.5,col:"ochre"},{t:"star",x:70,y:12,s:2.8,col:"ochre"},{t:"knot",x:34,y:28,r:1.4,col:"ochre"},{t:"knot",x:88,y:20,r:1.2,col:"ochre"});
+  it.push({t:"back",d:"M30 44 L104 35 L113 44 L120 120 L38 128 Z",w:1.5});
+  it.push({t:"back",d:"M104 35 L105 44 L113 44",w:1.1});
+  for(let i=0;i<3;i++)it.push({t:"back",d:scribble(40+i*.8,56+i*10,100+i*.8,49+i*10,9,4.2),col:"rose",len:2.6,gap:.3,w:1});
+  it.push({t:"back",d:"M58 90 C68 86 80 86 90 90",col:"ochre",w:1.1},{t:"back",d:"M85 86.5 L90 90 L85 93",col:"ochre",w:1.1});
+  for(let i=0;i<3;i++)it.push({t:"back",d:glyphs(42+i*.8,104+i*8,104+i*.8,97+i*8,10,3.4),len:2.4,gap:.3,w:1});
+  it.push({t:"satin",d:"M138 104 C136 78 154 46 184 18 C178 48 166 78 146 102 Z",ang:-15,col:"rose",gap:1.45});
+  it.push({t:"satin",d:"M146 104 C160 96 176 62 184 18 C188 52 178 88 153 108 Z",ang:15,gap:1.45});
+  it.push({t:"stem",d:"M124 134 C142 106 160 70 184 18",o:[-.6,.6],w:1.2,col:"steel"});
+  it.push({t:"satin",d:"M150 142 H178 V126 C178 120 174 118 170 118 H158 C154 118 150 120 150 126 Z",ang:90});
+  it.push({t:"back",d:"M157 118 V112 H171 V118",w:1.2});
+  it.push({t:"knot",x:121,y:139,r:1.6});
+  return it})();
+M.camino=(()=>{const it=[];
+  it.push({t:"run",d:"M6 144 C50 136 90 148 130 140 S176 136 196 142",col:"rose",len:4,gap:2.6,w:1.1});
+  it.push({t:"satin",d:"M14 126 h12 v-4 l8 7 l-8 7 v-4 h-12 Z",col:"ochre",ang:0,gap:1.4});
+  it.push({t:"stem",d:"M154 14 L168 142",o:[-.8,.8],col:"ochre",w:1.3});
+  it.push({t:"back",d:"M157 30 L157.6 24",w:1});
+  it.push({t:"satin",d:circ(158,36,3.6),ang:90},{t:"satin",d:circ(158,47,6.2),ang:90});
+  it.push({t:"satin",d:"M66 22 H134 A7 7 0 0 1 134 36 H66 A7 7 0 0 1 66 22 Z",ang:82,col:"rose",gap:1.45});
+  it.push({t:"back",d:"M80 20 V38",w:1.3},{t:"back",d:"M120 20 V38",w:1.3});
+  it.push({t:"back",d:"M70 50 C70 41 78 38 100 38 C122 38 130 41 130 50 L134 124 C134 130 130 134 124 134 L76 134 C70 134 66 130 66 124 Z",w:1.7});
+  it.push({t:"satin",d:"M72 51 C80 43 120 43 128 51 L127 74 C116 80 84 80 73 74 Z",ang:90,gap:1.5});
+  it.push({t:"back",d:"M88 77 V92",w:1.4},{t:"back",d:"M112 77 V92",w:1.4});
+  it.push({t:"satin",d:"M84.5 88 h7 v6 h-7 Z",col:"steel",ang:0,gap:1.3},{t:"satin",d:"M108.5 88 h7 v6 h-7 Z",col:"steel",ang:0,gap:1.3});
+  it.push({t:"back",d:"M80 98 H120 V124 C120 128 118 130 114 130 H86 C82 130 80 128 80 124 Z",w:1.4});
+  it.push({t:"run",d:"M83.5 101.5 H116.5 V123.5 C116.5 125.5 115.5 126.5 113.5 126.5 H86.5 C84.5 126.5 83.5 125.5 83.5 123.5 Z",col:"rose",len:2.6,gap:1.8,w:.9});
+  // scallop shell on the pocket
+  const sx=100,sy=124,sr=19;let edge="";
+  for(let a=205;a<=335;a+=13){const t=a*Math.PI/180;it.push({t:"back",d:`M${sx} ${sy} L${sx+Math.cos(t)*sr} ${sy+Math.sin(t)*sr}`,col:"ochre",w:1.05,len:3})}
+  for(let a=205;a<335;a+=13){const t=a*Math.PI/180,t2=(a+13)*Math.PI/180,tm=(a+6.5)*Math.PI/180;
+    edge+=(edge?" ":`M${sx+Math.cos(t)*sr} ${sy+Math.sin(t)*sr}`)+` Q${sx+Math.cos(tm)*(sr+4)} ${sy+Math.sin(tm)*(sr+4)} ${sx+Math.cos(t2)*sr} ${sy+Math.sin(t2)*sr}`}
+  it.push({t:"back",d:edge,col:"ochre",w:1.2,len:3});
+  it.push({t:"satin",d:"M95 124 L105 124 L103 129 L97 129 Z",col:"ochre",ang:0,gap:1.2});
+  return it})();
+M.trust=(()=>{const it=[];
+  it.push({t:"run",d:"M23.7 86.2 A78 24 -12 1 0 176.3 53.8 A78 24 -12 1 0 23.7 86.2",col:"rose",len:3,gap:2.6,w:1});
+  it.push({t:"satin",d:circ(176,54,4.4),ang:30,col:"ochre",gap:1.3},{t:"knot",x:27,y:84,r:1.6,col:"ochre"},{t:"knot",x:70,y:46,r:1.2,col:"ochre"});
+  it.push({t:"satin",d:"M70 112 C84 101 116 101 130 112 C116 116 84 116 70 112 Z",ang:0,col:"ochre",gap:1.4});
+  for(const k of [[82,110],[94,113],[118,111]])it.push({t:"knot",x:k[0],y:k[1],r:1.1,col:"red"});
+  it.push({t:"stem",d:"M100 108 C100 90 98 74 100 52",o:[-.7,.7],w:1.35});
+  it.push({t:"satin",d:"M100 86 C86 88 64 80 58 60 C78 56 96 66 100 86 Z",ang:38,gap:1.45});
+  it.push({t:"back",d:"M99 84 C88 78 72 70 60 61",col:"rose",w:1});
+  it.push({t:"back",d:"M100 66 C110 48 132 38 156 42 C152 66 128 76 100 66 Z",w:1.5});
+  it.push({t:"back",d:"M104 64 L118 56 H132",col:"rose",w:1.05},{t:"back",d:"M116 57 L124 49 H140",col:"rose",w:1.05},{t:"back",d:"M110 62 L118 67 H128",col:"rose",w:1.05});
+  it.push({t:"knot",x:133,y:56,r:1.8,col:"ochre"},{t:"knot",x:141,y:49,r:1.8,col:"ochre"},{t:"knot",x:129,y:67,r:1.8,col:"ochre"});
+  it.push({t:"back",d:"M40 108 C56 132 144 132 160 108",w:1.8});
+  it.push({t:"back",d:"M48 111 C62 126 138 126 152 111",col:"rose",w:1.1});
+  for(const d of ["M40 108 C35 101 38 95 45 99","M45 103 C40 95 44 90 51 95","M160 108 C165 101 162 95 155 99","M155 103 C160 95 156 90 149 95"])it.push({t:"back",d,w:1.4});
+  it.push({t:"satin",d:"M100 130 C96 125 90 126 90 131 C90 136 100 141 100 141 C100 141 110 136 110 131 C110 126 104 125 100 130 Z",ang:90,gap:1.3});
+  return it})();
+M.questions=(()=>{const it=[];
+  const P=[[30,36],[48,20],[60,50],[150,22],[172,44],[160,72],[34,94],[24,124],[176,116],[146,132]];
+  for(const [a,b] of [[0,1],[1,2],[0,2],[3,4],[4,5],[6,7],[8,9]])it.push({t:"run",d:`M${P[a][0]} ${P[a][1]} L${P[b][0]} ${P[b][1]}`,col:"rose",len:2.6,gap:2.2,w:.9});
+  P.forEach((p,i)=>it.push({t:"star",x:p[0],y:p[1],s:i%3?2.6:3.6,col:i%2?"ochre":"red"}));
+  it.push({t:"stem",d:"M76 52 C76 22 126 20 126 48 C126 68 102 68 101 88 V97",o:[-3.4,-1.7,0,1.7,3.4],w:1.55,step:2.2});
+  it.push({t:"satin",d:circ(101,112,5),ang:60,gap:1.3});
+  it.push({t:"back",d:"M140 92 c0 -7 11 -7 11 0 c0 4 -5.5 4 -5.5 9",col:"rose",w:1.1,len:2.6},{t:"knot",x:145.5,y:107,r:1.3,col:"rose"});
+  it.push({t:"back",d:"M48 66 c0 -5 8 -5 8 0 c0 3 -4 3 -4 6.5",col:"ochre",w:1,len:2.4},{t:"knot",x:52,y:77,r:1.1,col:"ochre"});
+  return it})();
+M.wip=(()=>{const it=[],cx=100,cy=78;
+  it.push({t:"back",d:circ(cx,cy,56),col:"ochre",w:2,len:5,gap:.3});
+  it.push({t:"back",d:circ(cx,cy,52),col:"ochre",w:1.2,len:5,gap:.3});
+  it.push({t:"satin",d:"M94 16 h12 v7 h-12 Z",col:"steel",ang:0,gap:1.2},{t:"back",d:"M106 19.5 h7",col:"steel",w:1.4});
+  const R=[6,13,20,27,34];
+  for(let s=0;s<8;s++){const t=s*Math.PI/4;it.push({t:"back",d:`M${cx} ${cy} L${cx+Math.cos(t)*R[0]} ${cy+Math.sin(t)*R[0]}`,w:.9,len:3})}
+  R.forEach((r,i)=>{
+    const last=i===R.length-1,a0=last?110:0,a1=last?340:360;
+    it.push({t:"back",d:ring(cx,cy,r,1.1,7,a0,a1),w:1.15,len:2.6,gap:.25,col:i%2?"rose":"red"});
+    if(i<R.length-1){const n=12+i*6,nr=R[i+1],lastNext=i+1===R.length-1;
+      for(let k=0;k<n;k++){const ang=k*360/n;if(lastNext&&(ang<110||ang>340))continue;
+        const t=ang*Math.PI/180;it.push({t:"back",d:`M${cx+Math.cos(t)*(r+1)} ${cy+Math.sin(t)*(r+1)} L${cx+Math.cos(t)*(nr-.5)} ${cy+Math.sin(t)*(nr-.5)}`,w:.85,len:9,col:i%2?"red":"rose"})}}
+  });
+  const t=340*Math.PI/180,ex=cx+Math.cos(t)*34,ey=cy+Math.sin(t)*34;
+  it.push({t:"floss",d:`M${ex} ${ey} C${ex+8} ${ey-6} ${ex+16} ${ey-10} 162 34`,w:.95});
+  it.push({t:"stem",d:"M146 46 L178 20",o:[-.55,.55],col:"steel",w:1.2,len:5,step:2});
+  it.push({t:"floss",d:"M176 22 C190 20 194 40 184 54 C174 70 190 86 180 104 C174 116 186 124 184 132",w:.95});
+  return it})();
+M.lily=(()=>{const it=[];
+  it.push({t:"satin",d:"M88 144 C64 120 56 82 70 40 C84 72 92 108 96 142 Z",ang:72,gap:1.45,col:"rose"});
+  it.push({t:"back",d:"M92 140 C84 108 76 76 71 46",w:.9});
+  it.push({t:"satin",d:"M100 144 C124 128 140 100 142 68 C126 90 112 114 100 142 Z",ang:112,gap:1.45});
+  it.push({t:"stem",d:"M96 144 C96 112 100 84 114 58 C122 44 134 34 146 32",o:[-.6,.6],w:1.25});
+  const B=[[106,64,1.25,"M109.5 61 Q106 61 106 64"],[124,46,1.1,"M121 48 Q124 48 124 46"],[136,38,.95,"M134 36.5 Q136 36 136 38"],[100,80,1.3,"M104 74 Q100 76 100 80"]];
+  for(const [x,y,s,ped] of B){it.push({t:"back",d:ped,w:.9,len:2});it.push({t:"satin",d:place(BELL,x,y,s),ang:90,gap:1.2,col:"ivory",edgeCol:"rose"})}
+  it.push({t:"satin",d:circ(149,33,2.6),ang:30,gap:1.1,col:"ivory",edgeCol:"rose"});
+  it.push({t:"knot",x:154,y:30,r:1.4,col:"ochre"});
+  return it})();
+M.spool=(()=>{const it=[];
+  it.push({t:"satin",d:"M84 46 H116 V104 H84 Z",ang:84,gap:1.5});
+  it.push({t:"satin",d:"M76 38 H124 V46 H76 Z",ang:0,col:"ochre",gap:1.3},{t:"satin",d:"M76 104 H124 V112 H76 Z",ang:0,col:"ochre",gap:1.3});
+  it.push({t:"floss",d:"M116 70 C140 66 150 92 168 86 C184 80 190 100 176 112 C166 120 172 132 186 134"});
+  it.push({t:"stem",d:"M150 132 L182 108",o:[-.5,.5],col:"steel",w:1.1,len:5,step:2});
+  return it})();
+
+M.hand=(()=>{const it=[];
+  it.push({t:"back",d:"M84 148 L84 120 C78 112 68 100 60 88 C56 81 61 75 67 79 L81 95 L79 52 C79 45 88 45 88 52 L90 84 L92 40 C92 33 101 33 101 40 L102 82 L105 44 C105 37 114 37 114 44 L112 86 L118 60 C119 53 127 54 126 61 L119 104 C117 114 113 119 113 124 L113 148",w:1.7});
+  it.push({t:"run",d:"M84 104 C92 98 104 98 112 104",col:"rose",len:2.6,gap:1.8,w:.95});
+  it.push({t:"run",d:"M88 116 C96 110 104 112 108 118",col:"rose",len:2.6,gap:1.8,w:.95});
+  it.push({t:"run",d:"M94 92 C96 100 98 110 102 124",col:"rose",len:2.6,gap:1.8,w:.95});
+  for(const [x,y] of [[83.5,58],[96.5,46],[109.5,50],[122.5,66]])it.push({t:"back",d:`M${x-3} ${y} q3 -2 6 0`,col:"rose",w:.8,len:2});
+  it.push({t:"satin",d:"M104.2 64 L113.6 64.6 L113.3 69.2 L103.9 68.6 Z",ang:94,gap:1.1});
+  it.push({t:"floss",d:"M113.5 66.6 C126 62 132 74 146 70 C160 66 160 52 172 50 C184 48 190 60 194 64",w:1});
+  it.push({t:"knot",x:113,y:65,r:1.5});
+  it.push({t:"star",x:40,y:40,s:3.4,col:"ochre"},{t:"knot",x:52,y:28,r:1.2,col:"ochre"},{t:"star",x:160,y:110,s:2.6,col:"ochre"});
+  return it})();
+/* ---------- painting and sewing the drawings in ---------- */
+const motifs=[...document.querySelectorAll("canvas[data-motif]")].map(cv=>({cv,st:build(M[cv.dataset.motif]),drawn:0,target:0,start:0,scale:0}));
+function fit(o){
+  const css=o.cv.clientWidth||o.cv.parentElement.clientWidth;if(!css)return false;
+  const s=css/200*DPR;if(Math.abs(s-o.scale)>.01){o.scale=s;o.cv.width=Math.round(200*s);o.cv.height=Math.round(150*s);o.drawn=0}
+  return true;
+}
+function paintTo(o,k){
+  if(!fit(o))return;
+  const c=o.cv.getContext("2d");
+  if(k<o.drawn){c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,o.cv.width,o.cv.height);o.drawn=0}
+  c.setTransform(o.scale,0,0,o.scale,0,0);
+  for(let i=o.drawn;i<k&&i<o.st.length;i++){const q=o.st[i];
+    if(q.k){drawKnot(c,q.x,q.y,q.r,q.col);continue}
+    if(q.clip){c.save();c.clip(q.clip,q.clip.rule);drawStitch(c,q.x0,q.y0,q.x1,q.y1,q.w,q.col,false);c.restore()}
+    else drawStitch(c,q.x0,q.y0,q.x1,q.y1,q.w,q.col,q.holes)}
+  o.drawn=Math.min(k,o.st.length);
+}
+function sew(spreadEl){
+  motifs.forEach(o=>{if(spreadEl.contains(o.cv)){o.target=0;o.start=performance.now();paintTo(o,0);if(reduce){o.target=o.st.length;paintTo(o,o.st.length)}}});
+}
+function sewTick(t){
+  motifs.forEach(o=>{if(o.start&&o.target<o.st.length){
+    const p=Math.min(1,Math.max(0,(t-o.start-200)/2400)),e=1-Math.pow(1-p,2.2);
+    o.target=Math.round(o.st.length*e);paintTo(o,o.target)}});
+}
+function paintAll(){motifs.forEach(o=>{o.scale=0;paintTo(o,o.target)})}
+
+
+/* ---------- the stitches that hold each photo to the page ---------- */
+const hash=(a,b)=>{const v=Math.sin(a*127.1+b*311.7)*43758.5453;return v-Math.floor(v)};
+function bez(x0,y0,segs,n){ // sample a chain of cubic curves into n points
+  const pts=[[x0,y0]];let px=x0,py=y0;const per=Math.max(2,Math.round(n/segs.length));
+  for(const s of segs){for(let k=1;k<=per;k++){const t=k/per,u=1-t;
+      pts.push([u*u*u*px+3*u*u*t*s[0]+3*u*t*t*s[2]+t*t*t*s[4],u*u*u*py+3*u*u*t*s[1]+3*u*t*t*s[3]+t*t*t*s[5]])}
+    px=s[4];py=s[5]}
+  return pts;
+}
+function drawTail(c,P){
+  c.lineCap="round";c.lineJoin="round";
+  const path=(dx,dy)=>{c.beginPath();c.moveTo(P[0].x+dx,P[0].y+dy);
+    for(let i=1;i<P.length-1;i++){const mx=(P[i].x+P[i+1].x)/2,my=(P[i].y+P[i+1].y)/2;c.quadraticCurveTo(P[i].x+dx,P[i].y+dy,mx+dx,my+dy)}
+    const e=P[P.length-1];c.lineTo(e.x+dx,e.y+dy)};
+  c.save();c.filter="blur(.9px)";path(.9,1.8);c.strokeStyle="rgba(50,30,20,.2)";c.lineWidth=1.4;c.stroke();c.restore();
+  path(0,0);c.strokeStyle="#9d1219";c.lineWidth=1.05;c.stroke();
+  path(-.2,-.2);c.strokeStyle="rgba(230,100,100,.5)";c.lineWidth=.35;c.stroke();
+  // the cut end opens into a few loose fibres
+  const a=P[P.length-2],b=P[P.length-1],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d;
+  c.strokeStyle="rgba(175,30,36,.75)";c.lineWidth=.35;c.beginPath();
+  for(const k of [-1,0,1]){c.moveTo(b.x,b.y);c.quadraticCurveTo(b.x+ux*2.2-uy*k*.8,b.y+uy*2.2+ux*k*.8,b.x+ux*4-uy*k*1.9,b.y+uy*4+ux*k*1.9)}c.stroke();
+}
+/* worn print: soft broken edge, nicked corners, scuffed rim */
+function wear(f,w,h){
+  const ph=f.querySelector(".photo"),seed=w*7+h;
+  const m=document.createElement("canvas"),S=2;m.width=w*S;m.height=h*S;const c=m.getContext("2d");c.scale(S,S);
+  const R=k=>hash(seed,k),edge=[];
+  const rc=[3+R(1)*7,2+R(2)*5,4+R(3)*8,2+R(4)*6]; // a different wear on each corner
+  const jit=(t,k)=>(Math.sin(t*.21+R(k)*9)*.55+Math.sin(t*.047+R(k+1)*7)*.9+(hash(t,k)-.5)*.9)+1.4;
+  const side=(x0,y0,x1,y1,k)=>{const L=Math.hypot(x1-x0,y1-y0),nx=-(y1-y0)/L,ny=(x1-x0)/L;
+    for(let s=0;s<=L;s+=2){const t=s/L,j=jit(s,k);edge.push([x0+(x1-x0)*t+nx*j,y0+(y1-y0)*t+ny*j])}};
+  side(rc[0],0,w-rc[1],0,10);c.save();side(w,rc[1],w,h-rc[2],20);side(w-rc[2],h,rc[3],h,30);side(0,h-rc[3],0,rc[0],40);
+  c.beginPath();edge.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();c.fillStyle="#000";c.fill();
+  c.globalCompositeOperation="destination-out";
+  for(let k=0;k<3;k++){ // small nicks and tears along the rim
+    const sd=Math.floor(R(50+k)*4),t=.15+R(60+k)*.7,dep=2.5+R(70+k)*4,wd=3+R(80+k)*6;
+    const [x,y,nx,ny,tx,ty]=sd===0?[w*t,0,0,1,1,0]:sd===1?[w,h*t,-1,0,0,1]:sd===2?[w*t,h,0,-1,1,0]:[0,h*t,1,0,0,1];
+    c.beginPath();c.moveTo(x-tx*wd,y-ty*wd);c.lineTo(x+nx*dep+tx*(R(90+k)-.5)*3,y+ny*dep+ty*(R(90+k)-.5)*3);c.lineTo(x+tx*wd*.8,y+ty*wd*.8);c.closePath();c.fill()}
+  for(let k=0;k<160;k++){ // the rim crumbles a little
+    const t=hash(seed+k,3),sd=k%4,r=.4+hash(k,seed)*1.1,inn=hash(k,7)*2.6;
+    const x=sd===0?t*w:sd===1?w-inn:sd===2?t*w:inn,y=sd===0?inn:sd===1?t*h:sd===2?h-inn:t*h;
+    c.beginPath();c.arc(x,y,r,0,7);c.fill()}
+  c.restore();
+  const url=m.toDataURL();
+  ph.style.webkitMaskImage=ph.style.maskImage=`url(${url})`;ph.style.webkitMaskSize=ph.style.maskSize="100% 100%";
+  // scuffs: the emulsion rubbed pale near the edges, a crease across one corner
+  let sc=ph.querySelector(".scuff");if(!sc){sc=document.createElement("canvas");sc.className="scuff";sc.setAttribute("aria-hidden","true");ph.append(sc)}
+  sc.width=w*S;sc.height=h*S;const d=sc.getContext("2d");d.scale(S,S);
+  const g=(x0,y0,x1,y1)=>{const gr=d.createLinearGradient(x0,y0,x1,y1);gr.addColorStop(0,"rgba(246,238,222,.55)");gr.addColorStop(1,"rgba(246,238,222,0)");return gr};
+  d.fillStyle=g(0,0,0,9);d.fillRect(0,0,w,9);d.fillStyle=g(0,h,0,h-9);d.fillRect(0,h-9,w,9);
+  d.fillStyle=g(0,0,9,0);d.fillRect(0,0,9,h);d.fillStyle=g(w,0,w-9,0);d.fillRect(w-9,0,9,h);
+  for(let k=0;k<200;k++){const sd=k%4,t=hash(k,seed+1),inn=Math.pow(hash(k,seed+2),3)*10;
+    const x=sd===0?t*w:sd===1?w-inn:sd===2?t*w:inn,y=sd===0?inn:sd===1?t*h:sd===2?h-inn:t*h;
+    d.fillStyle=`rgba(250,244,230,${.12+hash(k,9)*.32})`;d.fillRect(x,y,.5+hash(k,4)*1.3,.4+hash(k,5)*.7)}
+  // silver grain in the emulsion, finer and greyer than the paper under it
+  for(let k=0;k<w*h/9;k++){const x=hash(k,seed+11)*w,y=hash(k,seed+12)*h,q=hash(k,seed+13);
+    d.fillStyle=q>.5?`rgba(255,252,244,${(q-.5)*.16})`:`rgba(30,24,18,${(.5-q)*.14})`;d.fillRect(x,y,.5,.5)}
+  // the print has curled: the lower corners turn a little away from the light
+  let cg=d.createLinearGradient(0,h,0,h*.72);cg.addColorStop(0,"rgba(50,36,22,.16)");cg.addColorStop(1,"rgba(50,36,22,0)");d.fillStyle=cg;d.fillRect(0,h*.72,w,h*.28);
+  cg=d.createLinearGradient(0,0,0,h*.3);cg.addColorStop(0,"rgba(255,250,238,.12)");cg.addColorStop(1,"rgba(255,250,238,0)");d.fillStyle=cg;d.fillRect(0,0,w,h*.3);
+  // the paper's thickness catches the light all the way round
+  d.strokeStyle="rgba(252,248,238,.7)";d.lineWidth=1.3;d.beginPath();edge.forEach((p,i)=>i?d.lineTo(p[0],p[1]):d.moveTo(p[0],p[1]));d.closePath();d.stroke();
+  const cx0=R(5)>.5?w:0,cr=18+R(6)*16;d.strokeStyle="rgba(250,244,230,.55)";d.lineWidth=.8;d.beginPath();
+  d.moveTo(cx0===0?cr:w-cr,0);d.quadraticCurveTo(cx0===0?cr*.45:w-cr*.45,cr*.4,cx0,cr*1.05);d.stroke();
+  d.strokeStyle="rgba(60,40,20,.25)";d.lineWidth=.5;d.beginPath();d.moveTo(cx0===0?cr+.8:w-cr-.8,0);d.quadraticCurveTo(cx0===0?cr*.45+.8:w-cr*.45-.8,cr*.4+.8,cx0,cr*1.05+.8);d.stroke();
+}
+
+/* ---------- where a print used to be: paler paper, glue gone yellow, the holes it was sewn through ---------- */
+function paintGhosts(root){
+  (root||document).querySelectorAll(".snap.empty").forEach((f,k)=>{
+    const m=f.querySelector(".mount");const w=m.offsetWidth,h=m.offsetHeight;if(!w||!h)return;
+    let cv=m.querySelector(".ghost");if(!cv){cv=document.createElement("canvas");cv.className="ghost";cv.setAttribute("aria-hidden","true");m.append(cv)}
+    const key=w+"x"+h+"@"+DPR;if(cv.dataset.k===key)return;cv.dataset.k=key;
+    const P=14,W2=w+P*2,H2=h+P*2;cv.width=Math.round(W2*DPR);cv.height=Math.round(H2*DPR);
+    const c=cv.getContext("2d");c.setTransform(DPR,0,0,DPR,0,0);
+    const seed=[...(f.closest(".page")?.id||"x")].reduce((a,ch)=>a+ch.charCodeAt(0),0),R=i=>hash(seed,i);
+    const x0=P,y0=P,rot=(R(1)-.5)*.03;
+    c.save();c.translate(W2/2,H2/2);c.rotate(rot);c.translate(-W2/2,-H2/2);
+    // the paper under the print kept its colour while the rest of the page aged
+    c.save();c.filter="blur(2.5px)";c.fillStyle="rgba(255,253,246,.26)";c.fillRect(x0,y0,w,h);c.restore();
+    c.save();c.filter="blur(1.2px)";c.strokeStyle="rgba(120,92,58,.16)";c.lineWidth=1.4;c.strokeRect(x0-.5,y0-.5,w+1,h+1);c.restore();
+    // dried glue, a little of the old print's paper torn off and left behind
+    const spots=[[x0+10,y0+10],[x0+w-12,y0+12],[x0+w*.5,y0+h-12],[x0+12,y0+h-14]].filter((_,i)=>R(10+i)>.35);
+    spots.forEach(([gx,gy],i)=>{c.save();c.filter="blur(1.6px)";c.fillStyle="rgba(196,164,96,.22)";c.beginPath();
+      for(let a=0;a<6.3;a+=.5){const r=6+hash(seed+i,a)*6;c.lineTo(gx+Math.cos(a)*r*1.3,gy+Math.sin(a)*r)}c.closePath();c.fill();c.restore();
+      if(R(20+i)>.5){c.fillStyle="rgba(250,247,238,.85)";c.beginPath();
+        for(let a=0;a<6.3;a+=.7){const r=2.5+hash(seed+i*3,a)*3;c.lineTo(gx+2+Math.cos(a)*r*1.4,gy+1+Math.sin(a)*r)}c.closePath();c.fill();
+        c.strokeStyle="rgba(150,130,100,.3)";c.lineWidth=.4;c.stroke()}});
+    // the holes it was sewn through, in whichever pattern held it
+    const hole=(x,y)=>{c.fillStyle="rgba(255,250,240,.6)";c.beginPath();c.arc(x+.4,y+.6,1.6,0,7);c.fill();c.fillStyle="rgba(42,28,18,.72)";c.beginPath();c.arc(x,y,.95,0,7);c.fill()};
+    const pat=Math.floor(R(30)*3),holes=[];
+    if(pat===0){for(let x=x0+8;x<x0+w-8;x+=8+R(x)*2)holes.push([x,y0+12+(R(x+1)-.5)*1.2])}
+    else if(pat===1){for(let y=y0+14;y<y0+h-8;y+=17+R(y)*4){holes.push([x0-8,y+3],[x0+9,y-3])}}
+    else{for(const [cx,cy] of [[x0+9,y0+9],[x0+w-9,y0+9],[x0+9,y0+h-9],[x0+w-9,y0+h-9]])holes.push([cx-6,cy-6],[cx+6,cy+6],[cx+6,cy-6],[cx-6,cy+6])}
+    holes.forEach(([x,y])=>hole(x,y));
+    // one snipped end of red still caught in a hole
+    const [sx,sy]=holes[Math.floor(R(40)*holes.length)],a=R(41)*6.28;
+    drawStitch(c,sx,sy,sx+Math.cos(a)*4.5,sy+Math.sin(a)*4.5,1.6,"red",false);
+    c.strokeStyle="rgba(175,30,36,.7)";c.lineWidth=.35;c.beginPath();
+    for(const q of [-1,0,1]){const ex=sx+Math.cos(a)*4.5,ey=sy+Math.sin(a)*4.5;c.moveTo(ex,ey);c.lineTo(ex+Math.cos(a+q*.4)*2.4,ey+Math.sin(a+q*.4)*2.4)}c.stroke();
+    c.restore();
+  });
+}
+const sewn=[];
+function paintSewn(root){
+  paintGhosts(root);
+  (root||document).querySelectorAll(".snap.sewn").forEach(f=>{
+    const cv=f.querySelector(".sew"),fr=f.querySelector(".frame");
+    const w=fr.offsetWidth,h=fr.offsetHeight;if(!w||!h)return;
+    const key=w+"x"+h+"@"+DPR;if(cv.dataset.k===key)return;cv.dataset.k=key;
+    const mt=f.dataset.mount;if(mt!=="deckle"&&mt!=="cutout")wear(f,w,h); // those carry their own cut edge
+    const ox=60,oy=40,W2=w+120,H2=h+130,R=i=>hash(i,w),sw=2.05;
+    cv.width=Math.round(W2*DPR);cv.height=Math.round(H2*DPR);
+    const base=document.createElement("canvas");base.width=cv.width;base.height=cv.height;
+    const c=base.getContext("2d");c.setTransform(DPR,0,0,DPR,0,0);
+    const tails=[],st=f.dataset.sew;
+    const pk=(x,y,ang)=>{ // the paper dimples around a pulled stitch: shade on the low side, a lit rim on the high side
+      c.save();c.translate(x,y);c.rotate(ang);
+      let g=c.createRadialGradient(0,1.2,0,0,1.2,5.5);g.addColorStop(0,"rgba(40,26,16,.3)");g.addColorStop(1,"rgba(40,26,16,0)");c.fillStyle=g;c.beginPath();c.ellipse(0,1.2,6,4.4,0,0,7);c.fill();
+      g=c.createRadialGradient(0,-2.2,0,0,-2.2,4.5);g.addColorStop(0,"rgba(255,252,244,.34)");g.addColorStop(1,"rgba(255,252,244,0)");c.fillStyle=g;c.beginPath();c.ellipse(0,-2.2,5,3,0,0,7);c.fill();c.restore()};
+    const ridge=(x0,y0,x1,y1)=>{ // a faint fold where the thread draws the two holes together
+      const a=Math.atan2(y1-y0,x1-x0),nx=-Math.sin(a),ny=Math.cos(a);c.lineCap="round";
+      c.strokeStyle="rgba(40,26,16,.12)";c.lineWidth=1.6;c.beginPath();c.moveTo(x0+nx*2.2,y0+ny*2.2);c.lineTo(x1+nx*2.2,y1+ny*2.2);c.stroke();
+      c.strokeStyle="rgba(255,252,244,.22)";c.lineWidth=1.2;c.beginPath();c.moveTo(x0-nx*2,y0-ny*2);c.lineTo(x1-nx*2,y1-ny*2);c.stroke()};
+    const stitch=(x0,y0,x1,y1,w2)=>{const a=Math.atan2(y1-y0,x1-x0);ridge(x0,y0,x1,y1);pk(x0,y0,a);pk(x1,y1,a);drawStitch(c,x0,y0,x1,y1,w2,"red",true)};
+    if(st==="line"){ // one running stitch straight across the top, both ends left loose
+      const y=oy+14;let x=ox+6,i=0;const x0=x;
+      while(x<ox+w-14){const L=9+R(i)*2.5,yy=y+(R(i+7)-.5)*1.2;stitch(x,yy,x+L,yy+(R(i+3)-.5)*.8,sw);x+=L+6.5;i++}
+      tails.push(bez(x0-1,y,[[x0-16,y-10,x0-40,y+2,x0-36,y+26],[x0-32,y+52,x0-58,y+64,x0-50,y+96]],26));
+      tails.push(bez(x-5,y,[[x+6,y-8,x+20,y-6,x+24,y+6],[x+28,y+18,x+18,y+26,x+28,y+36]],16));
+    }else if(st==="whip"){ // over-and-over along the left edge, as if the picture were bound in
+      let y=oy+16,i=0;
+      while(y<oy+h-10){const a=(R(i)-.5)*1.5;stitch(ox-8,y+3+a,ox+9,y-3+a,sw*1.05);y+=17+R(i+2)*4;i++}
+      const ty=y-14;
+      tails.push(bez(ox-8,ty,[[ox-20,ty+12,ox-6,ty+38,ox-14,ty+62],[ox-22,ty+86,ox-2,ty+100,ox-10,ty+122]],26));
+      tails.push(bez(ox-8,oy+16+3,[[ox-18,oy+10,ox-30,oy+2,ox-38,oy+12]],10));
+    }else if(st==="tack"){ // a cut-out shape held by a few short tacks across its rim
+      const cx=ox+w/2,cy=oy+h/2,r=Math.min(w,h)/2*.985;
+      const at=[-2.35,-.62,.9,2.45].map((a,i)=>a+(R(i+40)-.5)*.16);
+      at.forEach((a,i)=>{const ux=Math.cos(a),uy=Math.sin(a),tx=-uy,ty=ux,tl=(R(i+50)-.5)*.35;
+        for(const s of [-2.6,2.6]){const x0=cx+ux*(r-7)+tx*s,y0=cy+uy*(r-7)+ty*s,x1=cx+ux*(r+6)+tx*(s+tl*6),y1=cy+uy*(r+6)+ty*(s+tl*6);stitch(x0,y0,x1,y1,sw)}});
+      const a=at[1],x=cx+Math.cos(a)*(r+6),y=cy+Math.sin(a)*(r+6);
+      tails.push(bez(x,y,[[x+12,y-6,x+26,y+4,x+24,y+20],[x+22,y+36,x+34,y+44,x+30,y+62]],20));
+      const b=at[2],bx=cx+Math.cos(b)*(r+6),by=cy+Math.sin(b)*(r+6);
+      tails.push(bez(bx,by,[[bx+8,by+8,bx+4,by+16,bx+12,by+22]],10));
+    }else{ // a cross at each corner
+      for(const [x,y] of [[ox+9,oy+9],[ox+w-9,oy+9],[ox+9,oy+h-9],[ox+w-9,oy+h-9]]){
+        pk(x-6,y-6,.8);pk(x+6,y+6,.8);pk(x+6,y-6,-.8);pk(x-6,y+6,-.8);ridge(x-6,y-6,x+6,y+6);ridge(x+6,y-6,x-6,y+6);
+        drawStitch(c,x-6,y-6,x+6,y+6,sw,"red",true);drawStitch(c,x+6,y-6,x-6,y+6,sw,"red",true)}
+      const x=ox+w-9,y=oy+h-9;
+      tails.push(bez(x+6,y+6,[[x+18,y+14,x+8,y+34,x+22,y+46],[x+34,y+56,x+26,y+72,x+38,y+84]],20));
+      tails.push(bez(ox+3,oy+3,[[ox-6,oy-4,ox-14,oy+2,ox-22,oy-6]],10));
+    }
+    const ropes=tails.map(p=>({rest:p,off:p.map(()=>[0,0]),vel:p.map(()=>[0,0]),ph:R(tails.length)*9}));
+    const rec={f,cv,base,ropes,ox,oy};
+    const k=sewn.findIndex(r=>r.f===f);if(k>=0)sewn[k]=rec;else sewn.push(rec);
+    drawSewn(rec,performance.now(),true);
+  });
+}
+function drawSewn(r,t,still){
+  const c=r.cv.getContext("2d");c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,r.cv.width,r.cv.height);c.drawImage(r.base,0,0);c.setTransform(DPR,0,0,DPR,0,0);
+  for(const q of r.ropes)drawTail(c,q.rest.map((p,i)=>({x:p[0]+(still?0:q.off[i][0]),y:p[1]+(still?0:q.off[i][1])})));
+}
+/* loose ends drift a little in the air of the room, and flinch when the needle passes */
+function sewnTick(t){
+  if(reduce||cur<1||busy)return;
+  const sp=spreads[cur];
+  for(const r of sewn){
+    if(!sp.contains(r.f))continue;
+    const rect=r.cv.getBoundingClientRect(),sx=rect.width/(r.cv.width/DPR),lx=(tip.x-rect.left)/sx,ly=(tip.y-rect.top)/sx;
+    for(const q of r.ropes){const n=q.rest.length;
+      for(let i=1;i<n;i++){const s=i/(n-1),p=q.rest[i],o=q.off[i],v=q.vel[i];
+        const wind=(Math.sin(t/1700+i*.32+q.ph)+.6*Math.sin(t/730+i*.71+q.ph*2))*.05*s;
+        let fx=wind-o[0]*.02,fy=wind*.6-o[1]*.02+.004*s;
+        const dx=p[0]+o[0]-lx,dy=p[1]+o[1]-ly,d=Math.hypot(dx,dy);
+        if(d<34&&visible){const k=(34-d)/34*.55*s;fx+=dx/(d||1)*k;fy+=dy/(d||1)*k}
+        v[0]=(v[0]+fx)*.93;v[1]=(v[1]+fy)*.93;o[0]+=v[0];o[1]+=v[1];
+        const m=14*s;const ol=Math.hypot(o[0],o[1]);if(ol>m){o[0]*=m/ol;o[1]*=m/ol}}
+      // neighbours pull each other along so the thread bends instead of breaking
+      for(let i=1;i<n;i++){const a=q.off[i-1],b=q.off[i];b[0]+=(a[0]-b[0])*.12;b[1]+=(a[1]-b[1])*.12}}
+    drawSewn(r,t,false);
+  }
+}
+
+
+/* ---------- typed paper strips: cut, typed and laid down by hand ---------- */
+document.querySelectorAll(".tag-wrap").forEach((w,k)=>{
+  const R=i=>hash(k*13.7+3,i),t=w.querySelector(".tag"),st=w.style;
+  const right=w.closest(".page.r");
+  st.setProperty("--rot",((right?.4:-.9)+(R(1)-.5)*2.6).toFixed(2)+"deg");
+  st.setProperty("--ml",(R(2)*10-3).toFixed(1)+"px");
+  st.setProperty("--dy",((R(3)-.5)*3).toFixed(1)+"px");
+  const lift=R(4)>.45; // which end has curled away from the page
+  st.setProperty("--sd",lift?"90deg":"270deg");st.setProperty("--sx",(lift?2.5:-1.5)+"px");st.setProperty("--sk",((lift?1:-1)*(.5+R(5))).toFixed(2)+"deg");
+  t.style.setProperty("--pt",(7+R(6)*2).toFixed(1)+"px");t.style.setProperty("--pb",(6+R(7)*2.5).toFixed(1)+"px");
+  t.style.setProperty("--pl",(11+R(8)*6).toFixed(1)+"px");t.style.setProperty("--pr",(13+R(9)*9).toFixed(1)+"px");
+  t.style.setProperty("--bx",-(R(10)*260|0)+"px");t.style.setProperty("--by",-(R(11)*220|0)+"px");
+  // scissors never cut quite straight: each edge slopes a hair and wavers a little
+  const e=(i,a)=>((R(i)-.5)*a).toFixed(2),pts=[];
+  const top=[[0,+e(20,3)+1.2],[33,+e(21,2)+.6],[66,+e(22,2)+.8],[100,+e(23,3)+1.1]];
+  const bot=[[100,99-+e(24,2.4)],[64,100-+e(25,2)-.4],[30,99.4-+e(26,2)],[0,99.6-+e(27,2.4)]];
+  top.forEach(([x,y])=>pts.push(`${x}% ${Math.max(0,y)}%`));
+  pts.push(`calc(100% - ${(R(28)*1.6).toFixed(1)}px) 50%`);
+  bot.forEach(([x,y])=>pts.push(`${x}% ${Math.min(100,y)}%`));
+  pts.push(`${(R(29)*1.6).toFixed(1)}px 50%`);
+  t.style.setProperty("--cut",`polygon(${pts.join(",")})`);
+  // the typebars hit unevenly: some letters heavier, some sit high, some a touch soft
+  const walk=n=>{for(const c of [...n.childNodes]){
+    if(c.nodeType===3){const f=document.createDocumentFragment();let i=0;
+      for(const ch of c.textContent){if(ch===" "){f.append(" ");continue}
+        const sp=document.createElement("span");sp.className="ch";sp.textContent=ch;const q=hash(k*31+i,ch.charCodeAt(0));i++;
+        sp.style.transform=`translate(${((q-.5)*.35).toFixed(2)}px,${((hash(q,7)-.5)*.7).toFixed(2)}px)`;
+        sp.style.opacity=(.72+hash(q,3)*.28).toFixed(2);
+        if(hash(q,5)>.78)sp.style.textShadow="0 0 .45px rgba(38,35,32,.7)";
+        f.append(sp)}
+      c.replaceWith(f)}else if(c.nodeType===1&&!c.classList.contains("dot"))walk(c)}};
+  walk(t);
+});
+
+/* ---------- routing ---------- */
+const spreads=[...document.querySelectorAll(".spread")];
+const route={"":0,"contents":0,"fin":6,"whos-rhei":1,"daybook":1,"vita-obscura":2,"buen-camino":2,"frontier-nature-trust":3,"lab-of-labs":3,"opus-void":4,"ancient-table":4,"questions":5,"colophon":5};
+let cur=-1,busy=null,queued=null;
+const desk=()=>innerWidth>760&&!reduce;
+function settle(n){
+  requestAnimationFrame(()=>paintSewn(spreads[n]));
+  spreads.forEach((s,i)=>{s.hidden=i!==n;s.classList.remove("enter")});
+  cur=n;sew(spreads[n]);
+  document.getElementById("prev").disabled=n===0;
+  document.getElementById("next").disabled=n===spreads.length-1;
+}
+function show(n,focusId){
+  n=Math.max(0,Math.min(spreads.length-1,n));
+  if(busy&&busy.peek&&!drag){cancelAnimationFrame(busy.raf);busy.fl.remove();busy=null}
+  if(busy){queued=[n,focusId];return}
+  if(n!==cur){
+    if(cur<0||!desk()){
+      const isFirst=cur<0;if(!isFirst)carryHole(cur,n,n>cur);settle(n);
+      if(!isFirst){const s=spreads[n];void s.offsetWidth;s.classList.add("enter");leafSound(.7,.55)}
+    }else{const f=makeFlip(n);busy=f;animA(f,180,1250,()=>finishFlip(f));leafSound(1.15,1)}
+  }
+  document.getElementById("prev").disabled=n===0;
+  document.getElementById("next").disabled=n===spreads.length-1;
+  if(focusId&&!desk()){const el=document.getElementById("p-"+focusId);if(el)el.scrollIntoView({behavior:reduce?"auto":"smooth"})}
+}
+
+
+/* ---------- every page the same size: if a page's content runs long, shrink its photo first, then its writing ---------- */
+function fitPages(){
+  if(innerWidth<=760){document.querySelectorAll(".page").forEach(p=>["--ph","--ts","--lw"].forEach(v=>p.style.removeProperty(v)));return}
+  const opened=[];
+  spreads.forEach(sp=>{if(sp.hidden){sp.hidden=false;sp.style.visibility="hidden";sp.style.position="absolute";sp.style.inset="0 0 auto 0";opened.push(sp)}});
+  const pages=[...document.querySelectorAll(".spread .page")];
+  const overOf=p=>{const pb=parseFloat(getComputedStyle(p).paddingBottom)||0;
+    // only the writing and pictures in the flow count; loose threads and the folio may hang over the edge
+    return()=>{let m=0;for(const k of p.children){const cs=getComputedStyle(k);if(cs.position==="absolute"||cs.position==="fixed"||k.hidden)continue;m=Math.max(m,k.offsetTop+k.offsetHeight)}return m>p.clientHeight-pb+1}};
+  const set=(p,k,v)=>p.style.setProperty(k,v);
+  // the cover only shrinks its logo
+  pages.forEach(p=>["--ph","--ts","--lw"].forEach(v=>p.style.removeProperty(v)));
+  pages.filter(p=>p.classList.contains("cover")).forEach(p=>{const over=overOf(p);let lw=300;while(over()&&lw>120){lw-=10;set(p,"--lw",lw+"px")}});
+  // the contents page: its list sits inside a wrapper, so measure the wrapper's own children
+  pages.filter(p=>p.classList.contains("cover-r")).forEach(p=>{const w=p.querySelector(".toc-wrap");if(!w)return;
+    const pb=parseFloat(getComputedStyle(p).paddingBottom)||0,lim=()=>p.getBoundingClientRect().bottom-pb+1;
+    const over=()=>{let m=0;for(const k of w.children)m=Math.max(m,k.getBoundingClientRect().bottom);return m>lim()};
+    p.classList.remove("tight");let ts=1,n=0;
+    while(over()&&n++<60){
+      // on a short screen the little note goes first, so the list itself can stay readable
+      if(ts<=.7&&!p.classList.contains("tight")){p.classList.add("tight");ts=1;set(p,"--ts",1);continue}
+      if(ts<=.5)break;ts=+(ts-.02).toFixed(2);set(p,"--ts",ts)}});
+  // every other page shares one size of hand and one size of picture, like a book set in one type:
+  // the largest hand that lets every page fit with pictures no smaller than the floor, then the pictures grow back as one
+  const work=pages.filter(p=>p.classList.contains("work")),fits=work.map(overOf);
+  const all=(ts,ph)=>{work.forEach(p=>{set(p,"--ts",ts);set(p,"--ph",ph+"px")});return fits.every(f=>!f())};
+  let hand=.52,pic=110,found=false;
+  // the hand stays readable first; only on very short screens does it go smaller than that
+  for(const least of [.74,.52]){
+    for(const floor of least>.6?[190,170,150,130,110]:[110]){
+      for(let ts=1;ts>=least;ts=+(ts-.02).toFixed(2))if(all(ts,floor)){hand=ts;pic=floor;found=true;break}
+      if(found)break}
+    if(found)break}
+  while(pic<230&&all(hand,pic+10))pic+=10;
+  all(hand,pic);
+  opened.forEach(sp=>{sp.hidden=true;sp.style.visibility="";sp.style.position="";sp.style.inset=""});
+  document.querySelectorAll(".sew,.ghost").forEach(c=>c.dataset.k="");paintSewn(cur>=0?spreads[cur]:undefined);
+}
+let fitT;addEventListener("resize",()=>{clearTimeout(fitT);fitT=setTimeout(fitPages,180)});
+addEventListener("load",()=>fitPages());
+
+/* ---------- turning a leaf: front is this page, back is the next one ---------- */
+const bookEl=document.getElementById("book");
+function face(page,copy){
+  const c=page.cloneNode(true);
+  c.removeAttribute("id");c.querySelectorAll("[id]").forEach(e=>e.removeAttribute("id"));
+  c.removeAttribute("data-anchor");c.querySelectorAll("[data-anchor]").forEach(e=>e.removeAttribute("data-anchor"));
+  c.querySelectorAll("a,button").forEach(e=>e.setAttribute("tabindex","-1"));
+  if(copy){const a=page.querySelectorAll("canvas"),b=c.querySelectorAll("canvas");a.forEach((cv,i)=>{if(!b[i])return;b[i].width=cv.width;b[i].height=cv.height;try{b[i].getContext("2d").drawImage(cv,0,0)}catch(e){}})}
+  c.setAttribute("aria-hidden","true");
+  return c;
+}
+/* the leaf is cut into narrow vertical strips hinged one to the next, so the paper can bend:
+   as it lifts, the free edge leads; as it falls, the air holds the edge back and it lands last */
+const STRIPS=10;
+function makeFlip(to){
+  const S=spreads[cur],T=spreads[to],fwd=to>cur;
+  T.hidden=false;T.style.visibility="hidden";T.style.position="absolute";T.style.inset="0 0 auto 0"; // laid out but unseen, so its pages clone at size
+  const SL=S.querySelector(".page.l"),SR=S.querySelector(".page.r"),TL=T.querySelector(".page.l"),TR=T.querySelector(".page.r");
+  const rect=S.getBoundingClientRect(),pw=rect.width/2,ph=Math.max(S.offsetHeight,T.offsetHeight),sw=pw/STRIPS;
+  const fl=document.createElement("div");fl.className="flip";fl.style.height=ph+"px";
+  const under=document.createElement("div");under.className="under";
+  paintSewn(T);
+  under.append(fwd?face(SL,true):face(TL,true),fwd?face(TR,true):face(SR,true));
+  const shR=document.createElement("i"),shL=document.createElement("i");shR.className="cast r";shL.className="cast l";under.append(shR,shL);
+  fl.append(under);
+  const frontSrc=fwd?SR:SL,backSrc=fwd?TL:TR,strips=[];
+  // the hole the thread runs through, if it is in this leaf: a marker rides along on the paper
+  const hl=holes[cur],carry=hl&&hl.el===frontSrc;let marker=null;
+  let parent=fl;
+  for(let i=0;i<STRIPS;i++){
+    const st=document.createElement("div");st.className="strip "+(fwd?"fwd":"bwd");
+    st.style.width=(sw+.8)+"px";
+    if(i===0)st.style.left=(fwd?pw:pw-sw)+"px";else st.style.left=(fwd?sw:-sw)+"px";
+    const offF=fwd?-i*sw:-(pw-(i+1)*sw),offB=fwd?-(pw-(i+1)*sw):-i*sw;
+    const fr=document.createElement("div"),bk=document.createElement("div");fr.className="face front";bk.className="face back";
+    const fc=face(frontSrc,true),bc=face(backSrc,true);
+    for(const [c,o] of [[fc,offF],[bc,offB]]){c.style.left=o+"px";c.style.width=pw+"px"}
+    fr.append(fc);bk.append(bc);
+    const frS=document.createElement("i"),bkS=document.createElement("i");frS.className="sh";bkS.className="sh";fr.append(frS);bk.append(bkS);
+    if(carry){const x=hl.rx*pw,local=x+offF;if(local>=0&&local<sw){marker=document.createElement("i");marker.className="hole-mark";marker.style.left=local+"px";marker.style.top=(hl.ry*ph)+"px";fr.append(marker)}}
+    st.append(fr,bk);parent.append(st);parent=st;
+    strips.push({el:st,frS,bkS});
+  }
+  bookEl.append(fl);
+  T.hidden=true;T.style.visibility="";T.style.position="";T.style.inset="";
+  const f={to,fwd,fl,strips,shR,shL,pw,sw,a:0,raf:0,bend:null,marker,S,T,SL,SR,TL,TR};setA(f,0);return f;
+}
+function setA(f,a){
+  f.a=a;const p=a/180,sg=f.fwd?-1:1,N=f.strips.length;
+  // how much the paper bends: leading on the way up, trailing on the way down (or as the hand drags it)
+  const b=f.bend!=null?f.bend:(Math.sin(2*Math.PI*p)*.62+Math.sin(Math.PI*p)*.22)*44;
+  let prev=0,X=0,maxS=0;
+  for(let i=0;i<N;i++){
+    const w=Math.pow((i+.5)/N,1.7);
+    const A=Math.max(0,Math.min(180,a+b*w*Math.sin(Math.PI*Math.min(1,p*1.08+.0001))));
+    const st=f.strips[i];st.el.style.transform=`rotateY(${(sg*(A-prev)).toFixed(3)}deg)`;prev=A;
+    const r=A*Math.PI/180,s=Math.sin(r);X+=f.sw*Math.cos(r);maxS=Math.max(maxS,s);
+    // each strip catches the light by its own angle: brightest lying flat, darkest edge-on
+    const curl=Math.abs(b)*w/44;
+    st.frS.style.background=`rgba(60,44,28,${(.42*s*s+.04*curl).toFixed(3)})`;
+    st.bkS.style.background=`rgba(60,44,28,${(.34*s*s+.03*curl).toFixed(3)})`;
+  }
+  // the shadow the leaf throws on the page beneath it
+  const pw=f.pw,Xs=(f.fwd?1:-1)*X,L=16+90*maxS,al=.42*maxS;
+  if(Xs>=0){f.shR.style.cssText=`left:${pw+Xs}px;width:${L}px;opacity:1;background:linear-gradient(90deg,rgba(30,20,12,${al}),rgba(30,20,12,0))`;f.shL.style.opacity=0}
+  else{f.shL.style.cssText=`left:${pw+Xs-L}px;width:${L}px;opacity:1;background:linear-gradient(270deg,rgba(30,20,12,${al}),rgba(30,20,12,0))`;f.shR.style.opacity=0}
+}
+function animA(f,to,dur,done){
+  cancelAnimationFrame(f.raf);f.bend=null;const a0=f.a;let t0=0;dur=dur*Math.max(.3,Math.abs(to-a0)/180);
+  // smootherstep: the hand lifts the page slowly, it crosses quickly, and settles without a bump
+  const tick=t=>{if(!t0)t0=t;const p=Math.min(1,(t-t0)/dur),e=p*p*p*(p*(p*6-15)+10);setA(f,a0+(to-a0)*e);if(p<1)f.raf=requestAnimationFrame(tick);else done&&done()};
+  f.raf=requestAnimationFrame(tick);
+}
+/* when the leaf the thread passes through is turned, the thread now comes out of its other side, mirrored;
+   when the thread was in a page underneath, it pokes up through the new page at the same place */
+function carryHole(from,to,fwd){
+  const h=holes[from];if(!h)return;
+  const S=spreads[from],T=spreads[to],turned=fwd?h.el===S.querySelector(".page.r"):h.el===S.querySelector(".page.l");
+  holes[to]={el:T.querySelector(fwd?".page.l":".page.r"),rx:turned?1-h.rx:h.rx,ry:h.ry};
+}
+function finishFlip(f){
+  carryHole(cur,f.to,f.fwd);
+  settle(f.to);f.fl.remove();busy=null;
+  const h=decodeURIComponent(location.hash.slice(1));if((route[h]??0)!==f.to)history.replaceState(null,"","#"+first[f.to]);
+  if(queued){const q=queued;queued=null;show(q[0],q[1])}
+}
+function cancelFlip(f){f.fl.remove();busy=null;if(queued){const q=queued;queued=null;show(q[0],q[1])}}
+
+/* grab a page edge and turn it by hand; the bottom corner lifts when the needle comes near */
+let drag=null;
+function edgeZone(e){
+  if(!desk()||busy&&!(drag||busy.peek))return null;
+  const S=spreads[cur];if(!S||cur<0)return null;
+  const r=S.getBoundingClientRect(),pw=r.width/2;
+  if(e.clientY<r.top||e.clientY>r.bottom)return null;
+  if(e.target.closest&&e.target.closest("a,button"))return null;
+  const corner=e.clientY>r.bottom-130;
+  if(cur<spreads.length-1&&e.clientX>r.right-80&&e.clientX<=r.right+6)return{fwd:true,r,pw,corner};
+  if(cur>0&&e.clientX<r.left+80&&e.clientX>=r.left-6)return{fwd:false,r,pw,corner};
+  return null;
+}
+function angleAt(z,x){const X=x-(z.r.left+z.pw);return Math.acos(Math.max(-1,Math.min(1,(z.fwd?X:-X)/z.pw)))*180/Math.PI}
+addEventListener("pointermove",e=>{
+  if(drag){const a=angleAt(drag.z,e.clientX);drag.moved=drag.moved||Math.abs(e.clientX-drag.x0)>4;drag.v=a-drag.f.a;cancelAnimationFrame(drag.f.raf);drag.f.bend=Math.max(-34,Math.min(34,(drag.f.bend||0)*.8-drag.v*2.2));setA(drag.f,Math.max(2,a));return}
+  if(busy&&!busy.peek)return;
+  const z=edgeZone(e);
+  if(z&&z.corner&&!busy){const f=makeFlip(cur+(z.fwd?1:-1));f.peek=true;busy=f;animA(f,16,700)}
+  else if(busy&&busy.peek&&!z){const f=busy;f.peek=false;animA(f,0,500,()=>cancelFlip(f))}
+},{passive:true});
+addEventListener("pointerdown",e=>{
+  const z=edgeZone(e);if(!z)return;
+  let f=busy&&busy.peek?busy:null;
+  if(f&&f.fwd!==z.fwd){cancelFlip(f);f=null}
+  if(!f){if(busy)return;f=makeFlip(cur+(z.fwd?1:-1));busy=f}
+  f.peek=false;drag={f,z,x0:e.clientX,moved:false,v:0};
+  try{e.target.setPointerCapture&&e.target.setPointerCapture(e.pointerId)}catch(_){}
+  document.body.classList.add("turning");e.preventDefault();
+});
+addEventListener("pointerup",()=>{
+  if(!drag)return;const {f,moved,v}=drag;drag=null;document.body.classList.remove("turning");
+  if(!moved||f.a>80||v>3){animA(f,180,1000,()=>finishFlip(f));leafSound(.85*Math.max(.3,(180-f.a)/180),.8)}
+  else animA(f,0,600,()=>cancelFlip(f));
+});
+
+function fromHash(){
+  const h=decodeURIComponent(location.hash.slice(1));
+  if(h)open();
+  show(route[h]??0,h&&h!=="contents"?h:null);
+}
+const first=["contents","whos-rhei","vita-obscura","frontier-nature-trust","opus-void","questions","fin"];
+/* go straight to a page; the address only follows along, so it works even where the frame swallows hash changes */
+function go(id){
+  if(!(id in route))return;
+  if(!motto.ready)motto.finish(true);
+  open();
+  show(route[id],id==="contents"?null:id);
+  try{if(location.hash.slice(1)!==id)history.replaceState(null,"","#"+id)}catch(_){}
+}
+document.getElementById("prev").onclick=()=>go(first[Math.max(0,cur-1)]);
+document.getElementById("next").onclick=()=>go(first[Math.min(first.length-1,cur+1)]);
+document.getElementById("toContents").onclick=()=>go("contents");
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a||a.closest(".toc"))return;e.preventDefault();go(a.getAttribute("href").slice(1))});
+addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"&&cur<spreads.length-1)document.getElementById("next").click();
+  if(e.key==="ArrowLeft"&&cur>0)document.getElementById("prev").click();
+});
+document.querySelectorAll(".toc a").forEach(a=>a.addEventListener("click",e=>{
+  e.preventDefault();
+  const r=a.querySelector(".t").getBoundingClientRect();
+  target.x=r.right;target.y=r.bottom;pin=true;
+  setTimeout(()=>{pin=false;go(a.getAttribute("href").slice(1))},reduce?0:420);
+}));
+
+
+/* ---------- contents: a running stitch is sewn under the line you point at ---------- */
+document.querySelectorAll(".toc .t").forEach(t=>{
+  const cv=document.createElement("canvas");cv.setAttribute("aria-hidden","true");t.append(cv);
+  const st={cv,k:0,goal:0,raf:0,list:[]};
+  const layout=()=>{const w=cv.clientWidth||t.clientWidth+8,h=12;cv.width=Math.round(w*DPR);cv.height=Math.round(h*DPR);
+    st.list=[];const seed=t.textContent.length;
+    for(let x=3;x+5<w-2;x+=8.6){const y=6+Math.sin((x+seed*7)/23)*1.1,y2=6+Math.sin((x+6+seed*7)/23)*1.1;st.list.push([x,y+(((x*13)%5)-2)*.12,x+5.6,y2])}};
+  const paint=()=>{const c=cv.getContext("2d");c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,cv.width,cv.height);c.setTransform(DPR,0,0,DPR,0,0);
+    const n=Math.floor(st.k);for(let i=0;i<n&&i<st.list.length;i++){const q=st.list[i];drawStitch(c,q[0],q[1],q[2],q[3],2.1,"red",true)}
+    if(st.k%1>0&&n<st.list.length){const q=st.list[n],p=st.k%1; // the stitch being pulled through
+      drawStitch(c,q[0],q[1],q[0]+(q[2]-q[0])*p,q[1]+(q[3]-q[1])*p,2.1,"red",false)}};
+  const run=()=>{cancelAnimationFrame(st.raf);let last=performance.now();
+    const tick=t2=>{const dt=t2-last;last=t2;const sp=st.goal>st.k?dt/55:-dt/18;
+      st.k=sp>0?Math.min(st.goal,st.k+sp):Math.max(st.goal,st.k+sp);paint();if(st.k!==st.goal)st.raf=requestAnimationFrame(tick)};
+    st.raf=requestAnimationFrame(tick)};
+  const a=t.closest("a");
+  const on=()=>{if(!st.list.length||cv.width<2)layout();st.goal=st.list.length;if(reduce){st.k=st.goal;paint()}else run()};
+  const off=()=>{st.goal=0;if(reduce){st.k=0;paint()}else run()};
+  a.addEventListener("pointerenter",on);a.addEventListener("pointerleave",off);a.addEventListener("focus",on);a.addEventListener("blur",off);
+  addEventListener("resize",()=>{st.list=[];if(st.goal){layout();st.goal=st.list.length;st.k=Math.min(st.k,st.goal);paint()}});
+});
+
+
+/* ---------- the contents page writes itself once the thread is out ---------- */
+let wrItems=[],written=false;
+function prepContents(){
+  const w=document.querySelector(".toc-wrap");
+  wrItems=[w.querySelector(".toc-title"),...[...w.querySelectorAll(".toc a")].flatMap(a=>[a.querySelector(".t"),a.querySelector(".dots"),a.querySelector(".n")]),w.querySelector(".toc-note")];
+  wrItems.forEach(e=>{e.classList.add("wr");e.style.setProperty("--w","0%")});
+}
+function writeContents(now){
+  if(written)return;written=true;
+  const clear=()=>wrItems.forEach(e=>{e.classList.remove("wr","on");e.style.removeProperty("--w")});
+  if(now||reduce){clear();return}
+  setTimeout(()=>{wrItems.forEach(e=>e.classList.add("on"));setTimeout(clear,2000)},350);
+}
+
+/* ---------- the loose red thread ---------- */
+const cv=document.getElementById("thread"),cx=cv.getContext("2d");
+let W,H;
+function size(){W=innerWidth;H=innerHeight;cv.width=W*DPR;cv.height=H*DPR;cx.setTransform(DPR,0,0,DPR,0,0)}
+size();
+let rz;addEventListener("resize",()=>{size();clearTimeout(rz);rz=setTimeout(paintAll,120)});
+
+let opened=false,grow=0,pin=false,visible=false,slack=1;
+const N=46,pts=[],target={x:innerWidth*.7,y:innerHeight*.45},tip={x:innerWidth*.7,y:innerHeight*.45};
+let dirx=-.42,diry=.91; // needle points down-left at rest, like it's being held
+function anchor(){
+  if(busy&&busy.marker){const r=busy.marker.getBoundingClientRect();return{x:r.left,y:r.top}}
+  const a=spreads[cur]?.querySelector("[data-anchor]");
+  const hl=holes[cur];if(hl){const r=hl.el.getBoundingClientRect();return{x:r.left+hl.rx*r.width,y:r.top+hl.ry*r.height}}
+  if(cur<=0&&motto.ready)return motto.end();
+  if(!a)return{x:W/2,y:H/2};
+  const r=a.getBoundingClientRect();
+  return cur===0?{x:r.left+r.width*.5,y:r.bottom-r.height*.06}:{x:r.left+r.width*.9,y:r.top+r.height*.12};
+}
+function open(){
+  if(opened)return;opened=true;document.body.classList.add("opened");
+  const a=anchor();
+  for(let i=0;i<N;i++)pts.push({x:a.x,y:a.y,px:a.x,py:a.y});
+  writeContents();
+  if(!visible){const tr=document.querySelector(".toc-title").getBoundingClientRect();target.x=tr.left+40;target.y=tr.bottom+30;tip.x=a.x;tip.y=a.y;visible=true}
+}
+document.getElementById("logo").addEventListener("click",()=>{if(!motto.ready)motto.finish(true);if(!opened){open();if(location.hash)history.replaceState(null,"",location.pathname)}else go("contents")});
+
+let lastMove=0;
+addEventListener("pointermove",e=>{if(!motto.ready)return;if(!pin){target.x=e.clientX;target.y=e.clientY;lastMove=performance.now();if(!visible){tip.x=target.x;tip.y=target.y}visible=true}},{passive:true});
+addEventListener("pointerdown",e=>{if(motto.ready&&e.pointerType!=="mouse"){target.x=e.clientX;target.y=e.clientY;visible=true}},{passive:true});
+document.documentElement.addEventListener("mouseleave",()=>{visible=opened});
+
+
+/* ---------- push the needle through the paper: the thread now comes up where you clicked ---------- */
+const holes={};let stab=null;
+addEventListener("pointerdown",e=>{
+  if(!opened||!motto.ready||busy||drag||cur<0)return;
+  if(e.button&&e.button!==0)return;
+  if(e.target.closest("a,button,.nav,.logo"))return;
+  const pg=e.target.closest(".page");if(!pg||!spreads[cur].contains(pg))return;
+  if(typeof edgeZone==="function"&&edgeZone(e))return;
+  const r=pg.getBoundingClientRect();
+  stab={t0:performance.now(),x:e.clientX,y:e.clientY,moved:false,hole:{el:pg,rx:(e.clientX-r.left)/r.width,ry:(e.clientY-r.top)/r.height}};
+  target.x=e.clientX;target.y=e.clientY;
+});
+
+function traceArr(arr){cx.beginPath();cx.moveTo(arr[0].x,arr[0].y);
+  for(let i=1;i<arr.length-1;i++){const mx=(arr[i].x+arr[i+1].x)/2,my=(arr[i].y+arr[i+1].y)/2;cx.quadraticCurveTo(arr[i].x,arr[i].y,mx,my)}
+  const e=arr[arr.length-1];cx.lineTo(e.x,e.y)}
+function strand(phase,amp,t){
+  return pts.map((p,i)=>{
+    const a=pts[Math.max(0,i-1)],b=pts[Math.min(N-1,i+1)],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1;
+    const taper=Math.min(1,i/4,(N-1-i)/4);
+    const o=Math.sin(i*.55+phase+t/1300)*amp*taper;
+    return {x:p.x-dy/d*o,y:p.y+dx/d*o};
+  });
+}
+function drawNeedle(tx,ty,sink=0){
+  // with sink, the point is already through the paper: only the shaft above it shows
+  const L=42-sink,ex=tx-dirx*L,ey=ty-diry*L,nx=-diry,ny=dirx;
+  cx.save();
+  // shadow on the paper
+  cx.filter="blur(1.6px)";cx.strokeStyle="rgba(40,28,18,.28)";cx.lineWidth=1.8;cx.lineCap="round";
+  cx.beginPath();cx.moveTo(ex+3,ey+6);cx.lineTo(tx+3,ty+6);cx.stroke();cx.filter="none";
+  // shaft, tapering to the point
+  const g=cx.createLinearGradient(ex+nx*1.4,ey+ny*1.4,ex-nx*1.4,ey-ny*1.4);
+  g.addColorStop(0,"#2f3439");g.addColorStop(.42,"#c9cfd4");g.addColorStop(.6,"#7d848a");g.addColorStop(1,"#353a3f");
+  cx.fillStyle=g;cx.beginPath();
+  cx.moveTo(ex+nx*1.6,ey+ny*1.6);cx.lineTo(tx+nx*.2,ty+ny*.2);cx.lineTo(tx-nx*.2,ty-ny*.2);cx.lineTo(ex-nx*1.6,ey-ny*1.6);
+  cx.arc(ex,ey,1.6,Math.atan2(-ny,-nx),Math.atan2(ny,nx));cx.fill();
+  // the eye
+  cx.strokeStyle="rgba(60,64,68,.8)";cx.lineWidth=.5;cx.fillStyle="#efe5d1";
+  cx.beginPath();cx.ellipse(ex+dirx*4.5,ey+diry*4.5,2.8,.6,Math.atan2(diry,dirx),0,7);cx.fill();cx.stroke();
+  cx.restore();
+  return {x:ex+dirx*4.5,y:ey+diry*4.5};
+}
+
+
+
+/* ---------- while the words are sewn: guitar harmonics, let ring and fading away on their own ---------- */
+let harmBuf=null;const harmReady=fetch("assets/harmonics.mp3").then(r=>r.ok?r.arrayBuffer():null).catch(()=>null);
+/* browsers keep a page silent until it is touched; when the motto would sew in silence, the book waits for that touch */
+const gate={wait:false,hold(){
+  if(reduce||!audio.on)return;const a=ac();if(a&&a.state==="running"){harp.prime();return}
+  if(a)harp.prime();gate.wait=true;const tip2=document.getElementById("begin"),mo=document.getElementById("motto");tip2.hidden=false;tip2.style.top=(mo.offsetTop+mo.offsetHeight*.55)+"px";
+  const go=e=>{removeEventListener("pointerdown",go,true);removeEventListener("keydown",go,true);ac();tip2.hidden=true;
+    // this first touch only wakes the book: it does not also open it or skip the sewing
+    if(e.type==="pointerdown")addEventListener("click",ev=>{ev.stopPropagation();ev.preventDefault()},{capture:true,once:true});
+    setTimeout(()=>{gate.wait=false},120)};
+  addEventListener("pointerdown",go,true);addEventListener("keydown",go,true)}};
+const harp=(()=>{
+  let total=1,played=false,decP=null;
+  const load=a=>decP||(decP=harmReady.then(async b=>{if(!b)return null;try{harmBuf=await a.decodeAudioData(b.slice(0))}catch(_){}return harmBuf}));
+  function start(a,ms){
+    played=true;
+    const go=()=>{const t=a.currentTime+.01,src=a.createBufferSource(),g=a.createGain();src.buffer=harmBuf;
+      const off=Math.min(Math.max(0,ms/1000),harmBuf.duration-2.5);
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.8,t+(off>0?.6:.03)); // a late start eases in rather than cutting in
+      // whatever is left after the last stitch drifts out slowly, however much of the recording remains
+      const left=harmBuf.duration-off,endAt=t+left;g.gain.setValueAtTime(.8,Math.max(t+.6,endAt-1));g.gain.linearRampToValueAtTime(0,endAt); // the recording fades itself; this only catches the very last of it
+      src.connect(g).connect(audio.master);src.start(t,off);src.stop(endAt+.05)};
+    if(harmBuf)go();
+    else load(a).then(b=>{if(b)go()})
+  }
+  return{
+    prime(){if(audio.ac)load(audio.ac)},
+    begin(T){total=T;played=false;if(audio.on)ac()},
+    at(ms){const a=audio.ac;if(played||!a||a.state!=="running"||!audio.on||ms>=total)return;start(a,ms)}
+  };
+})();
+
+/* ---------- while the words are sewn, the lily stirs and its drops of light twinkle ---------- */
+const stir=(()=>{
+  const bells=document.querySelector(".logo-art .bells"),stars=[...document.querySelectorAll(".logo-art .star")];
+  const seed=stars.map((_,i)=>({ph:Math.random()*6.28,sp:2.2+Math.random()*2.6,per:2.6+Math.random()*1.8,off:Math.random()*3,drop:7+Math.random()*7}));
+  let on=false,k=0,last=0,t0=0;
+  return{
+    start(){on=true;t0=performance.now()},
+    stop(){on=false},
+    tick(t){
+      const dt=Math.min(.05,(t-(last||t))/1000);last=t;
+      k+=((on?1:0)-k)*(on?dt*1.6:dt*1.1);if(k<.002&&!on){if(k){k=0;bells.style.transform="";stars.forEach(s=>{s.style.opacity="";s.style.transform=""})}return}
+      if(reduce)return;
+      const s=(t-t0)/1000;
+      // the stem bends a little, as if a breath passed over it, and springs back
+      const sway=(Math.sin(s*2.1)*.8+Math.sin(s*3.7+1)*.35+Math.sin(s*6.3)*.12)*k;
+      bells.style.transform=`rotate(${sway.toFixed(3)}deg) translateY(${(Math.sin(s*2.6+.6)*.4*k).toFixed(2)}px)`;
+      // each drop catches the light on its own time: dims, then flashes a little brighter and larger
+      // ...and now and then lets go: it slips down like a tear, fading, and a new one gathers where it hung
+      stars.forEach((el,i)=>{const q=seed[i],w=Math.sin(s*q.sp+q.ph),fl=Math.max(0,Math.sin(s*q.sp*1.7+q.ph*2))**6;
+        const c=((s+q.off)%q.per)/q.per;                 // where this drop is in its own cycle
+        let fall=0,fade=1;
+        if(c>.62){const f=(c-.62)/.26;if(f<1){fall=f*f*q.drop;fade=1-f}else{fall=0;fade=Math.min(1,(c-.88)/.12)}}
+        el.style.opacity=((1-k*(.55*(.5-.5*w)))*(1-k*(1-fade))).toFixed(3);
+        el.style.transform=`translateY(${(k*(fall+Math.sin(s*1.3+q.ph)*.6)).toFixed(2)}px) scale(${(1+k*(.16*fl-.08*(.5-.5*w))).toFixed(3)})`});
+    }
+  };
+})();
+
+/* ---------- "mundane magic", sewn in by the needle when the book opens ---------- */
+const motto=(()=>{
+  const D={"w":264.1,"h":52.0,"s":[[[6.0,25.39],[8.42,21.76],[10.85,20.55],[12.06,21.76],[12.06,22.97],[10.85,27.82],[9.64,31.45]],[[10.85,27.82],[12.06,25.39],[14.48,21.76],[16.91,20.55],[19.33,20.55],[20.55,21.76],[20.55,22.97],[19.33,27.82],[18.12,31.45]],[[19.33,27.82],[20.55,25.39],[22.97,21.76],[25.39,20.55],[27.82,20.55],[29.03,21.76],[29.03,24.18],[27.82,27.82],[27.82,30.24],[29.03,31.45],[30.24,31.45],[32.67,30.24],[33.88,29.03],[36.3,25.39]],[[36.3,25.39],[38.73,20.55],[36.3,27.82],[36.3,30.24],[37.52,31.45],[39.94,31.45],[42.36,30.24],[44.79,27.82],[47.21,24.18]],[[48.42,20.55],[46.0,27.82],[46.0,30.24],[47.21,31.45],[48.42,31.45],[50.85,30.24],[52.06,29.03],[54.48,25.39]],[[54.48,25.39],[56.91,21.76],[59.33,20.55],[60.55,21.76],[60.55,22.97],[59.33,27.82],[58.12,31.45]],[[59.33,27.82],[60.55,25.39],[62.97,21.76],[65.39,20.55],[67.82,20.55],[69.03,21.76],[69.03,24.18],[67.82,27.82],[67.82,30.24],[69.03,31.45],[70.24,31.45],[72.67,30.24],[73.88,29.03],[76.3,25.39]],[[87.21,24.18],[86.0,21.76],[83.58,20.55],[81.15,20.55],[78.73,21.76],[77.52,22.97],[76.3,25.39],[76.3,27.82],[77.52,30.24],[79.94,31.45],[82.36,31.45],[84.79,30.24],[86.0,27.82],[93.27,6.0]],[[88.42,20.55],[87.21,26.61],[87.21,30.24],[88.42,31.45],[89.64,31.45],[92.06,30.24],[93.27,29.03],[95.7,25.39]],[[106.61,24.18],[105.39,21.76],[102.97,20.55],[100.55,20.55],[98.12,21.76],[96.91,22.97],[95.7,25.39],[95.7,27.82],[96.91,30.24],[99.33,31.45],[101.76,31.45],[104.18,30.24],[105.39,27.82],[107.82,20.55],[106.61,26.61],[106.61,30.24],[107.82,31.45],[109.03,31.45],[111.45,30.24],[112.67,29.03],[115.09,25.39]],[[115.09,25.39],[117.52,21.76],[119.94,20.55],[121.15,21.76],[121.15,22.97],[119.94,27.82],[118.73,31.45]],[[119.94,27.82],[121.15,25.39],[123.58,21.76],[126.0,20.55],[128.42,20.55],[129.64,21.76],[129.64,24.18],[128.42,27.82],[128.42,30.24],[129.64,31.45],[130.85,31.45],[133.27,30.24],[134.48,29.03],[136.91,25.39]],[[138.12,29.03],[140.55,27.82],[141.76,26.61],[142.97,24.18],[142.97,21.76],[141.76,20.55],[140.55,20.55],[138.12,21.76],[136.91,24.18],[136.91,27.82],[138.12,30.24],[140.55,31.45],[142.97,31.45],[145.39,30.24],[146.61,29.03],[149.03,25.39]],[[168.42,25.39],[170.85,21.76],[173.27,20.55],[174.48,21.76],[174.48,22.97],[173.27,27.82],[172.06,31.45]],[[173.27,27.82],[174.48,25.39],[176.91,21.76],[179.33,20.55],[181.76,20.55],[182.97,21.76],[182.97,22.97],[181.76,27.82],[180.55,31.45]],[[181.76,27.82],[182.97,25.39],[185.39,21.76],[187.82,20.55],[190.24,20.55],[191.45,21.76],[191.45,24.18],[190.24,27.82],[190.24,30.24],[191.45,31.45],[192.67,31.45],[195.09,30.24],[196.3,29.03],[198.73,25.39]],[[209.64,24.18],[208.42,21.76],[206.0,20.55],[203.58,20.55],[201.15,21.76],[199.94,22.97],[198.73,25.39],[198.73,27.82],[199.94,30.24],[202.36,31.45],[204.79,31.45],[207.21,30.24],[208.42,27.82],[210.85,20.55],[209.64,26.61],[209.64,30.24],[210.85,31.45],[212.06,31.45],[214.48,30.24],[215.7,29.03],[218.12,25.39]],[[229.03,24.18],[227.82,21.76],[225.39,20.55],[222.97,20.55],[220.55,21.76],[219.33,22.97],[218.12,25.39],[218.12,27.82],[219.33,30.24],[221.76,31.45],[224.18,31.45],[226.61,30.24],[227.82,29.03]],[[230.24,20.55],[227.82,29.03],[222.97,42.36],[221.76,44.79],[219.33,46.0],[218.12,44.79],[218.12,42.36],[219.33,38.73],[222.97,35.09],[226.61,32.67],[229.03,31.45],[232.67,29.03],[236.3,25.39]],[[239.94,14.48],[239.94,15.7],[241.15,15.7],[241.15,14.48],[239.94,14.48]],[[236.3,25.39],[238.73,20.55],[236.3,27.82],[236.3,30.24],[237.52,31.45],[238.73,31.45],[241.15,30.24],[242.36,29.03],[244.79,25.39]],[[253.27,22.97],[253.27,21.76],[252.06,20.55],[249.64,20.55],[247.21,21.76],[246.0,22.97],[244.79,25.39],[244.79,27.82],[246.0,30.24],[248.42,31.45],[252.06,31.45],[255.7,29.03],[258.12,25.39]]]}, el=document.getElementById("motto");
+  const smooth=p=>{for(let k=0;k<2;k++){const q=[p[0]];for(let i=0;i<p.length-1;i++){const a=p[i],b=p[i+1];q.push([a[0]*.75+b[0]*.25,a[1]*.75+b[1]*.25],[a[0]*.25+b[0]*.75,a[1]*.25+b[1]*.75])}q.push(p[p.length-1]);p=q}return p};
+  const ev=[]; // stitches and the needle's travel between strokes
+  let last=null;
+  for(const raw of D.s){
+    if(raw.length<2)continue;
+    const p=smooth(raw);
+    if(last)ev.push({mv:1,x0:last[0],y0:last[1],x1:p[0][0],y1:p[0][1]});
+    let acc=[p[0]],len=0;const LEN=3.1,GAP=.5;let s0=p[0],need=LEN,gap=false;
+    for(let i=1;i<p.length;i++){let a=s0,b=p[i];
+      let d=Math.hypot(b[0]-a[0],b[1]-a[1]);
+      while(d>=need){const t=need/d,m=[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+        if(!gap)ev.push({x0:acc[0][0],y0:acc[0][1],x1:m[0],y1:m[1]});
+        gap=!gap;need=gap?GAP:LEN;acc=[m];a=m;s0=m;d=Math.hypot(b[0]-a[0],b[1]-a[1])}
+      need-=d;s0=b}
+    if(!gap){const e=p[p.length-1];if(Math.hypot(e[0]-acc[0][0],e[1]-acc[0][1])>.6)ev.push({x0:acc[0][0],y0:acc[0][1],x1:e[0],y1:e[1]})}
+    last=p[p.length-1];
+  }
+  let seen=false;try{seen=localStorage.getItem("ouvroir-seen")==="1"}catch(_){}
+  const pace=seen?.62:1; // someone who has watched it before does not need to wait as long
+  let T=0;for(const e of ev){e.t0=T;e.d=(e.mv?Math.max(90,Math.hypot(e.x1-e.x0,e.y1-e.y0)*7):24)*pace;T+=e.d}
+  const off=document.createElement("canvas");let sc=0,done=0,start=0;
+  const fit=()=>{const w=el.clientWidth||200;const s=w/D.w*DPR;if(Math.abs(s-sc)>.01){sc=s;el.width=off.width=Math.round(D.w*s);el.height=off.height=Math.round(D.h*s);
+    const o=off.getContext("2d");o.setTransform(s,0,0,s,0,0);for(let i=0;i<done;i++)if(!ev[i].mv)drawStitch(o,ev[i].x0,ev[i].y0,ev[i].x1,ev[i].y1,1.75,"red",true)}};
+  const blit=()=>{const c=el.getContext("2d");c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,el.width,el.height);c.drawImage(off,0,0)};
+  const toPage=(x,y)=>{const r=el.getBoundingClientRect(),w=el.offsetWidth,h=el.offsetHeight,cx0=r.left+r.width/2,cy0=r.top+r.height/2;
+    const px=(x/D.w-.5)*w,py=(y/D.h-.5)*h,a=-2*Math.PI/180;return{x:cx0+px*Math.cos(a)-py*Math.sin(a),y:cy0+px*Math.sin(a)+py*Math.cos(a)}};
+  const M={ready:false,
+    finish(silent){stir.stop();fit();const o=off.getContext("2d");o.setTransform(sc,0,0,sc,0,0);
+      for(let i=done;i<ev.length;i++)if(!ev[i].mv)drawStitch(o,ev[i].x0,ev[i].y0,ev[i].x1,ev[i].y1,1.75,"red",true);
+      done=ev.length;blit();M.ready=true;document.body.classList.add("needle-ready");
+      try{localStorage.setItem("ouvroir-seen","1");sessionStorage.setItem("ouvroir-sewn","1")}catch(_){}
+      if(!silent){target.x=tip.x;target.y=tip.y;visible=true;lastMove=performance.now()}
+      if(!silent||!location.hash.slice(1))open()},
+    end(){const e=ev.filter(x=>!x.mv).pop();return toPage(e.x1,e.y1)},
+    tick(t){
+      if(!start){if(gate.wait)return;start=t+500;harp.begin(T);stir.start()}
+      fit();const el2=t-start;if(el2<0)return;
+      const o=off.getContext("2d");o.setTransform(sc,0,0,sc,0,0);
+      while(done<ev.length&&ev[done].t0+ev[done].d<=el2){const e=ev[done];if(!e.mv)drawStitch(o,e.x0,e.y0,e.x1,e.y1,1.75,"red",true);done++}
+      blit();
+      harp.at(t-start);
+      if(done>=ev.length){harp.at(1e9);stir.stop();M.finish(false);return}
+      const e=ev[done],p=Math.max(0,Math.min(1,(el2-e.t0)/e.d));
+      let nx=e.x0+(e.x1-e.x0)*p,ny=e.y0+(e.y1-e.y0)*p;
+      if(!e.mv){const c=el.getContext("2d");c.setTransform(sc,0,0,sc,0,0);drawStitch(c,e.x0,e.y0,nx,ny,1.75,"red",false)}
+      const P=toPage(nx,ny),sx=e.x1-e.x0,sy=e.y1-e.y0,sl=Math.hypot(sx,sy)||1;
+      // slanted like a hand holds it, leaning a little into the direction of the stitch
+      const gx=-.42+sx/sl*.45,gy=.91+sy/sl*.25,gl=Math.hypot(gx,gy);
+      dirx+=(gx/gl-dirx)*.18;diry+=(gy/gl-diry)*.18;const dn=Math.hypot(dirx,diry);dirx/=dn;diry/=dn;
+      const lift=e.mv?6:Math.sin(p*Math.PI)*3.5; // the needle rises between holes
+      tip.x=P.x-dirx*lift;tip.y=P.y-diry*lift;target.x=tip.x;target.y=tip.y;
+      // thread from the eye back down to the stitch just made
+      const ex=tip.x-dirx*37.5,ey=tip.y-diry*37.5;
+      cx.lineCap="round";cx.strokeStyle="rgba(180,26,34,.9)";cx.lineWidth=.8;cx.beginPath();cx.moveTo(ex,ey);
+      cx.quadraticCurveTo(ex-diry*14+dirx*10,ey+dirx*14+diry*10,P.x,P.y);cx.stroke();
+      drawNeedle(tip.x,tip.y);
+    }};
+  return M;
+})();
+
+
+/* ---------- the candle: held a little below and to the side of where the reader looks ---------- */
+const flame={x:innerWidth*.42,y:innerHeight*.55,on:true,last:0};
+const darkEl=document.querySelector(".candle.dark"),glowEl=document.querySelector(".candle.glow");
+// evening and night (6 pm to 6 am, the visitor's own clock) open with the candle lit; a choice holds until the next dusk or dawn
+const period=()=>{const d=new Date(),h=d.getHours(),night=h>=18||h<6,day=new Date(d);if(h<6)day.setDate(d.getDate()-1);
+  return {night,key:`${day.getFullYear()}-${day.getMonth()+1}-${day.getDate()}-${night?"n":"d"}`}};
+(()=>{const p=period();flame.on=p.night;
+  try{const v=JSON.parse(localStorage.getItem("ouvroir-candle")||"null");if(v&&v.key===p.key)flame.on=v.on}catch(_){}
+  document.body.classList.toggle("unlit",!flame.on)})();
+const candleBtn=document.getElementById("candle");
+let smoke=[],lightT=flame.on?-1e9:-1e9,outT=-1e9;
+const syncCandle=()=>{candleBtn.setAttribute("aria-label",flame.on?"Blow out the candle":"Light the candle");candleBtn.setAttribute("aria-pressed",flame.on?"true":"false");candleBtn.title=flame.on?"Blow out the candle":"Light the candle"};
+syncCandle();
+/* ---------- sound: while the candle burns, the night outside the window ---------- */
+const audio={ac:null,master:null,amb:null,on:true};
+try{if(localStorage.getItem("ouvroir-sound")==="off")audio.on=false}catch(_){}
+const hushBtn=document.getElementById("hush");
+const syncHush=()=>{const l=audio.on?"Turn sound off":"Turn sound on";hushBtn.setAttribute("aria-label",l);hushBtn.title=l;hushBtn.setAttribute("aria-pressed",audio.on?"false":"true");document.body.classList.toggle("deaf",!audio.on)};syncHush();
+function ac(){if(!audio.ac){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;audio.ac=new C();audio.master=audio.ac.createGain();audio.master.gain.value=.9;audio.master.connect(audio.ac.destination)}
+  if(audio.ac.state==="suspended")audio.ac.resume();return audio.ac}
+function noise(a,sec,kind){const n=a.sampleRate*sec,b=a.createBuffer(1,n,a.sampleRate),d=b.getChannelData(0);let l=0,p0=0,p1=0,p2=0;
+  for(let i=0;i<n;i++){const w=Math.random()*2-1;
+    if(kind==="brown"){l=(l+.02*w)/1.02;d[i]=l*3.2}
+    else if(kind==="pink"){p0=.997*p0+w*.029;p1=.985*p1+w*.032;p2=.95*p2+w*.048;d[i]=(p0+p1+p2+w*.02)*.5}
+    else d[i]=w}
+  return b}
+let field=null; // the recording, decoded once
+const fieldReady=fetch("assets/ambient.mp3").then(r=>r.ok?r.arrayBuffer():null).catch(()=>null);
+function swell(g,t,peak){ // rises slowly from silence, the way you start to notice a sound
+  g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(0,t);
+  const N=24,dur=9,curve=new Float32Array(N);for(let i=0;i<N;i++){const x=i/(N-1);curve[i]=peak*x*x*(3-2*x)}
+  g.gain.setValueCurveAtTime(curve,t,dur);
+}
+
+/* ---------- a match struck to light the candle; the night comes in after it ---------- */
+let matchBuf=null;const matchReady=fetch("assets/match.mp3").then(r=>r.ok?r.arrayBuffer():null).catch(()=>null);
+function strikeMatch(){
+  if(!audio.on)return Promise.resolve();
+  const a=ac();if(!a)return Promise.resolve();
+  return matchReady.then(async buf=>{
+    if(!buf)return;
+    if(!matchBuf){try{matchBuf=await a.decodeAudioData(buf.slice(0))}catch(_){return}}
+    const t=a.currentTime+.01,src=a.createBufferSource(),g=a.createGain();
+    src.buffer=matchBuf;g.gain.value=.8;src.connect(g).connect(audio.master);src.start(t);
+    // the night starts to come in while the match is still burning down
+    await new Promise(r=>setTimeout(r,Math.min(1600,matchBuf.duration*1000*.45)));
+  });
+}
+
+function startAmbient(){
+  const a=ac();if(!a||!audio.on||audio.amb)return;
+  audio.amb={pending:true};
+  fieldReady.then(async buf=>{
+    if(!audio.amb||!audio.amb.pending)return;
+    if(buf&&!field){try{field=await a.decodeAudioData(buf.slice(0))}catch(_){field=false}}
+    if(!audio.amb||!audio.amb.pending)return;
+    if(field){
+      const t=a.currentTime,out=a.createGain();out.connect(audio.master);swell(out,t,.55);
+      const src=a.createBufferSource();src.buffer=field;src.loop=true;src.connect(out);src.start(t,Math.random()*Math.max(0,field.duration-20));
+      audio.amb={out,nodes:[src],timer:0};
+    }else synthNight();
+  });
+}
+function synthNight(){
+  const a=audio.ac,t=a.currentTime;
+  const out=a.createGain();swell(out,t,1);out.connect(audio.master);
+  const nodes=[];
+  // wind in the trees, far off: low brown noise that swells and settles
+  const wind=a.createBufferSource();wind.buffer=noise(a,8,"brown");wind.loop=true;
+  const wl=a.createBiquadFilter();wl.type="lowpass";wl.frequency.value=460;wl.Q.value=.4;
+  const wg=a.createGain();wg.gain.value=.05;
+  const lfo=a.createOscillator();lfo.frequency.value=.06;const lg=a.createGain();lg.gain.value=.03;lfo.connect(lg).connect(wg.gain);
+  const lfo2=a.createOscillator();lfo2.frequency.value=.023;const lg2=a.createGain();lg2.gain.value=160;lfo2.connect(lg2).connect(wl.frequency);
+  wind.connect(wl).connect(wg).connect(out);wind.start();lfo.start();lfo2.start();nodes.push(wind,lfo,lfo2);
+  // leaves stirring: a thin, high whisper riding on the wind
+  const lv=a.createBufferSource();lv.buffer=noise(a,6,"pink");lv.loop=true;
+  const lh=a.createBiquadFilter();lh.type="highpass";lh.frequency.value=2600;const lvg=a.createGain();lvg.gain.value=.008;
+  const lfo3=a.createOscillator();lfo3.frequency.value=.11;const lg3=a.createGain();lg3.gain.value=.006;lfo3.connect(lg3).connect(lvg.gain);
+  lv.connect(lh).connect(lvg).connect(out);lv.start();lfo3.start();nodes.push(lv,lfo3);
+  // crickets, now and then, somewhere outside
+  const pan=a.createStereoPanner?a.createStereoPanner():null;
+  const chirp=()=>{if(!audio.amb)return;const now=a.currentTime,o=a.createOscillator(),g=a.createGain();o.type="sine";o.frequency.value=4300+Math.random()*500;
+    g.gain.value=0;const n=2+Math.floor(Math.random()*3);
+    for(let i=0;i<n;i++){const s0=now+i*.07;g.gain.setValueAtTime(0,s0);g.gain.linearRampToValueAtTime(.0035,s0+.012);g.gain.linearRampToValueAtTime(0,s0+.045)}
+    if(pan){pan.pan.value=Math.random()*1.6-.8;o.connect(g).connect(pan).connect(out)}else o.connect(g).connect(out);
+    o.start(now);o.stop(now+n*.07+.05);audio.amb.timer=setTimeout(chirp,600+Math.random()*2600)};
+  audio.amb={out,nodes,timer:setTimeout(chirp,2500)};
+}
+function stopAmbient(){
+  const m=audio.amb;if(!m||!audio.ac)return;audio.amb=null;if(m.pending)return;clearTimeout(m.timer);const t=audio.ac.currentTime;
+  const v=m.out.gain.value;m.out.gain.cancelScheduledValues(t);m.out.gain.setValueAtTime(v,t);m.out.gain.linearRampToValueAtTime(0,t+2.4);
+  setTimeout(()=>{m.nodes.forEach(n=>{try{n.stop()}catch(_){}});m.out.disconnect()},2600);
+}
+// browsers only let sound start after the visitor touches the page, so the night waits for the first click or key
+
+/* ---------- a leaf turning: air across the paper, a few crackles of the fibres, the soft fall onto the stack ---------- */
+let leafBuf=null;const leafReady=fetch("assets/pageturn.mp3").then(r=>r.ok?r.arrayBuffer():null).catch(()=>null);
+function leafSound(dur,vol){
+  try{if(!audio.on)return}catch(_){return}
+  const a=ac();if(!a)return;
+  leafReady.then(async buf=>{
+    if(!buf)return;
+    if(!leafBuf){try{leafBuf=await a.decodeAudioData(buf.slice(0))}catch(_){return}}
+    const t=a.currentTime+.005,src=a.createBufferSource(),g=a.createGain();
+    src.buffer=leafBuf;src.playbackRate.value=.94+Math.random()*.12; // no two pages turn quite alike
+    g.gain.value=.75*vol;
+    let node=g;if(a.createStereoPanner){const p=a.createStereoPanner();p.pan.setValueAtTime(.25,t);p.pan.linearRampToValueAtTime(-.25,t+leafBuf.duration);g.connect(p);node=p}
+    src.connect(g);node.connect(audio.master);src.start(t);
+    src.onended=()=>{try{node.disconnect()}catch(_){}};
+  });
+}
+
+const firstTouch=()=>{if(audio.on){ac();if(flame.on)startAmbient()}removeEventListener("pointerdown",firstTouch,true);removeEventListener("keydown",firstTouch,true)};
+addEventListener("pointerdown",firstTouch,true);addEventListener("keydown",firstTouch,true);
+document.addEventListener("visibilitychange",()=>{if(!audio.ac)return;document.hidden?audio.ac.suspend():audio.ac.resume()});
+hushBtn.addEventListener("click",()=>{audio.on=!audio.on;syncHush();try{localStorage.setItem("ouvroir-sound",audio.on?"on":"off")}catch(_){}
+  if(audio.on){if(flame.on)startAmbient()}else stopAmbient()});
+candleBtn.addEventListener("click",()=>{flame.on=!flame.on;document.body.classList.toggle("unlit",!flame.on);syncCandle();
+  const now=performance.now();if(flame.on){lightT=now;strikeMatch().then(()=>{if(flame.on)startAmbient()})}else{outT=now;stopAmbient()}
+  try{localStorage.setItem("ouvroir-candle",JSON.stringify({key:period().key,on:flame.on}))}catch(_){}
+  if(!flame.on)document.querySelectorAll(".tag-wrap,.snap.sewn .frame").forEach(e=>{e.style.removeProperty("--shx");e.style.removeProperty("--shy")})});
+function candleTick(t){
+  if(!flame.on)return;
+  // where the light wants to be: near the needle once it's in hand, otherwise over the open book
+  let gx=innerWidth*.42,gy=innerHeight*.55;
+  if(visible){gx=tip.x+70;gy=tip.y+90}
+  const ease=reduce?1:.035;flame.x+=(gx-flame.x)*ease;flame.y+=(gy-flame.y)*ease;
+  // a flame never holds still: it leans and rights itself, breathes, and now and then a draught catches it
+  const s=t/1000,gust=Math.pow(Math.max(0,Math.sin(s*.31)*Math.sin(s*.117+1)),2)*1.6;
+  const sway=reduce?0:Math.sin(s*1.15)*.55+Math.sin(s*2.7+1.3)*.3+Math.sin(s*4.9+.7)*.15;    // the lean, -1..1
+  const bob=reduce?0:Math.sin(s*1.9+.4)*.6+Math.sin(s*3.6)*.4;
+  const br=reduce?0:Math.sin(s*2.3)*.45+Math.sin(s*3.9+2)*.3+Math.sin(s*6.1+.9)*.15+Math.sin(s*8.7)*.1; // brightness, -1..1
+  const k=1+br*.06*(1+gust)-gust*.05;
+  const cx=flame.x+sway*(9+gust*12),cy=flame.y+bob*(4+gust*5);
+  const base=Math.max(innerWidth,innerHeight)*.62,rx=base*(1+br*.035*(1+gust)+sway*.012),ry=base*(1.04+br*.03*(1+gust)-sway*.008);
+  const c=(r,g,b)=>`rgb(${Math.min(255,r*k)|0},${Math.min(255,g*k)|0},${Math.min(255,b*k)|0})`;
+  const at=`ellipse ${rx|0}px ${ry|0}px at ${cx.toFixed(1)}px ${cy.toFixed(1)}px`;
+  darkEl.style.background=`radial-gradient(${at},${c(255,246,230)} 0%,${c(247,226,191)} 14%,${c(217,184,140)} 34%,${c(143,108,74)} 62%,${c(63,44,29)} 86%,${c(42,29,19)} 100%)`;
+  glowEl.style.background=`radial-gradient(ellipse ${rx*.42|0}px ${ry*.46|0}px at ${cx.toFixed(1)}px ${(cy-6).toFixed(1)}px,rgba(255,176,92,${(.14+br*.035+gust*.02).toFixed(3)}),rgba(255,150,70,0) 100%)`;
+  // shadows fall away from the flame, longer the further a thing is from it
+  if(t-flame.last<33||cur<0)return;flame.last=t;
+  spreads[cur].querySelectorAll(".tag-wrap,.snap.sewn .frame").forEach(el=>{
+    const r=el.getBoundingClientRect(),ex=r.left+r.width/2,ey=r.top+r.height/2,dx=ex-cx,dy=ey-cy,d=Math.hypot(dx,dy)||1,L=Math.min(6,d/95);
+    el.style.setProperty("--shx",(dx/d*L).toFixed(2)+"px");el.style.setProperty("--shy",(dy/d*L-1).toFixed(2)+"px")});
+}
+
+function step(t){
+  requestAnimationFrame(step);
+  sewTick(t);sewnTick(t);candleTick(t);stir.tick(t);
+  cx.clearRect(0,0,W,H);
+  if(!motto.ready){motto.tick(t);return}
+  // needle follows the hand closely; the thread trails behind it
+  const px=tip.x,py=tip.y,ease=reduce?1:.38;
+  tip.x+=(target.x-tip.x)*ease;tip.y+=(target.y-tip.y)*ease;
+  const vx=tip.x-px,vy=tip.y-py,sp=Math.hypot(vx,vy);
+  if(sp>.6){const k=Math.min(.22,sp*.02);dirx+=(vx/sp-dirx)*k;diry+=(vy/sp-diry)*k}
+  else{dirx+=(-.42-dirx)*.015;diry+=(.91-diry)*.015}
+  const dn=Math.hypot(dirx,diry)||1;dirx/=dn;diry/=dn;
+  if(!visible)return;
+  const eyeX=tip.x-dirx*37.5,eyeY=tip.y-diry*37.5;
+  if(opened){
+    grow=Math.min(1,grow+(reduce?1:.02));
+    const a=anchor();
+    const ex=a.x+(eyeX-a.x)*grow,ey=a.y+(eyeY-a.y)*grow;
+    const idle=t-lastMove>1800;
+    // in the hand the thread hangs loose; left alone it slowly draws up, off the writing
+    slack+=((idle?0:1)-slack)*(idle?.012:.06);
+    const rest=(Math.hypot(ex-a.x,ey-a.y)*(1.03+.25*slack)+(10+60*slack)*grow)/(N-1);
+    for(let i=1;i<N-1;i++){
+      const p=pts[i],vx2=(p.x-p.px)*.965,vy2=(p.y-p.py)*.965;p.px=p.x;p.py=p.y;
+      p.x+=vx2+Math.sin(t/620+i*.47)*(idle?.16:.07);
+      p.y+=vy2+.06+.1*slack+Math.cos(t/780+i*.63)*(idle?.1:.05);
+    }
+    pts[0].x=a.x;pts[0].y=a.y;pts[N-1].x=ex;pts[N-1].y=ey;
+    for(let k=0;k<8;k++)for(let i=0;i<N-1;i++){
+      const p=pts[i],q=pts[i+1],dx=q.x-p.x,dy=q.y-p.y,d=Math.hypot(dx,dy)||1,diff=(d-rest)/d*.5;
+      if(i>0){p.x+=dx*diff;p.y+=dy*diff}
+      if(i+1<N-1){q.x-=dx*diff;q.y-=dy*diff}
+    }
+    cx.lineCap="round";cx.lineJoin="round";
+    // faint shadow, two fine strands that drift apart and back together
+    cx.save();cx.translate(2,4);cx.filter="blur(1.8px)";traceArr(pts);cx.strokeStyle="rgba(50,30,20,.13)";cx.lineWidth=1.6;cx.stroke();cx.restore();
+    cx.globalAlpha=.62+.38*slack; // settled, it reads as part of the page rather than on top of it
+    traceArr(strand(0,.9,t));cx.strokeStyle="rgba(176,22,30,.92)";cx.lineWidth=.85;cx.stroke();
+    traceArr(strand(2.4,1.1,t));cx.strokeStyle="rgba(205,48,52,.85)";cx.lineWidth=.7;cx.stroke();cx.globalAlpha=1;
+    // short tail hanging out of the eye
+    const nx=-diry,ny=dirx,sw=Math.sin(t/500)*3;
+    cx.strokeStyle="rgba(190,34,40,.9)";cx.lineWidth=.75;cx.beginPath();cx.moveTo(eyeX,eyeY);
+    cx.quadraticCurveTo(eyeX+dirx*10+nx*(7+sw),eyeY+diry*10+ny*(7+sw),eyeX+dirx*4+nx*(15+sw),eyeY+diry*4+ny*(15+sw));cx.stroke();
+  }
+  // the hole the thread comes up through
+  if(opened){const a=anchor();cx.fillStyle="rgba(250,244,232,.55)";cx.beginPath();cx.arc(a.x+.5,a.y+.7,1.9,0,7);cx.fill();
+    cx.fillStyle="rgba(40,26,16,.7)";cx.beginPath();cx.arc(a.x,a.y,1.15,0,7);cx.fill()}
+  let sink=0;
+  if(stab){const k=(t-stab.t0)/420;
+    if(k>=1)stab=null;
+    else{const down=k<.38?k/.38:1,up=k<.38?0:(k-.38)/.62,e=down*(1-up*up);
+      sink=e*17;
+      if(k<.7){tip.x+=(stab.x-tip.x)*.6;tip.y+=(stab.y-tip.y)*.6}
+      if(!stab.moved&&k>=.38){stab.moved=true;holes[cur]=stab.hole;grow=Math.min(grow,1)}}}
+  drawNeedle(tip.x,tip.y,sink);
+}
+
+function boot(){paintAll();fitPages();document.querySelectorAll(".snap img").forEach(im=>im.complete||im.addEventListener("load",()=>paintSewn(),{once:true}));addEventListener("resize",()=>setTimeout(()=>paintSewn(),150));prepContents();{const h=location.hash.slice(1);let sewnNow=false;try{sewnNow=sessionStorage.getItem("ouvroir-sewn")==="1"}catch(_){}
+  if(reduce||sewnNow||(h&&h!=="contents")){motto.finish(true);writeContents(true)}else gate.hold()}addEventListener("hashchange",fromHash);fromHash();requestAnimationFrame(step)}
+// hidden pages don't ask for their fonts, so ask for every face up front: pages are fitted with the real handwriting, not a stand-in
+const faces=["16px \"Old Standard TT\"","italic 16px \"Old Standard TT\"",'16px "Reenie Beanie"','16px "Homemade Apple"','16px "Special Elite"','16px "Courier Prime"'];
+(document.fonts?Promise.all(faces.map(f=>document.fonts.load(f).catch(()=>null))).then(()=>document.fonts.ready):Promise.resolve()).then(boot);
+if(document.fonts)document.fonts.addEventListener("loadingdone",()=>{clearTimeout(fitT);fitT=setTimeout(fitPages,60)});
+})();
+</script>
+
+</body>
+</html>
