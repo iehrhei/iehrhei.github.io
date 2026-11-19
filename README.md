@@ -22,4 +22,4 @@ Copyright © 2026 Rhei Tan. All rights reserved. See [LICENSE](LICENSE); third-p
 ## Credits
 Night sounds: “night at the forest lake nature atmo” by Garuda1982 (CC BY 4.0), freesound.org/s/645971.
 Chimes: “Wind Chimes.aif” by stefansmulovitz (CC BY 4.0), freesound.org/s/263658.
-Fonts: Homemade Apple and Special Elite (Apache 2.0); Reenie Beanie, Courier Prime and Old Standard TT (SIL OFL 1.1). Licence texts are in `fonts/`.
+Fonts: Homemade Apple and Special Elite (Apache 2.0); Reenie Beanie and Courier Prime (SIL OFL 1.1). Licence texts are in `fonts/`.
