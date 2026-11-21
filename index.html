@@ -167,28 +167,36 @@ body:not(.opened) .toc-wrap{pointer-events:none}
 .go::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:repeating-linear-gradient(90deg,var(--thread) 0 6px,transparent 6px 10px)}
 /* Questions: titles on torn-off sheets of squared draft paper, the first lines still in pencil.
    When an essay is written, make that .draft-in an <a href> and it lifts on hover. */
-.drafts{list-style:none;margin:calc(12px * var(--ts,1)) 0 0;padding:0;display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:27rem}
+.drafts{--dts:calc(var(--ts,1) * var(--ds,1));list-style:none;margin:calc(12px * var(--dts,1)) 0 0;padding:0;display:flex;flex-direction:column;align-items:flex-start;width:100%;max-width:27rem}
 .draft{position:relative;width:86%;filter:drop-shadow(0 .5px .4px rgba(50,38,26,.3)) drop-shadow(1px 3px 4px rgba(40,28,18,.16))}
-.draft+.draft{margin-top:calc(4px * var(--ts,1))}
+.draft+.draft{margin-top:calc(4px * var(--dts,1))}
 .draft:nth-child(1){--r:-1deg;margin-left:1%;--cut:polygon(0 3%,4% 1%,9% 3.5%,15% .5%,22% 2.5%,29% 0,36% 3%,44% 1%,51% 3.5%,58% .5%,66% 2.8%,73% .8%,80% 3.2%,87% .4%,94% 2.6%,100% 1%,100% 100%,0 100%)}
 .draft:nth-child(2){--r:.8deg;margin-left:10%;--cut:polygon(0 1%,6% 3%,12% .6%,19% 3.2%,25% 1%,33% 3.6%,40% .4%,47% 2.6%,55% .8%,62% 3.4%,70% 1.2%,77% 3%,85% .2%,92% 2.8%,100% .8%,100% 100%,0 100%)}
 .draft:nth-child(4){--r:1.1deg;margin-left:12%;--cut:polygon(0 1.6%,6% .3%,14% 3%,21% .9%,28% 3.3%,36% .5%,43% 2.7%,51% .3%,58% 3.1%,66% 1%,73% 3.4%,81% .7%,88% 2.9%,95% .4%,100% 2.2%,100% 100%,0 100%)}
 .draft:nth-child(4) .hed{background-size:55% 1px}
+.draft:nth-child(5){--r:-.7deg;margin-left:3%;--cut:polygon(0 2.4%,8% .6%,15% 3%,23% .8%,30% 3.2%,38% .2%,46% 2.6%,53% .6%,61% 3.4%,68% 1.2%,76% 3%,83% .3%,91% 2.7%,100% .9%,100% 100%,0 100%)}
+.draft:nth-child(5) .hed{background-size:66% 1px}
 .draft:nth-child(3){--r:-.5deg;margin-left:4%;--cut:polygon(0 2%,7% .4%,13% 3%,20% 1%,27% 3.4%,35% .6%,42% 2.4%,49% .2%,57% 3%,64% 1.4%,71% 3.6%,79% .6%,86% 2.8%,93% 1%,100% 3%,100% 100%,0 100%)}
 .draft-in{display:block;position:relative;color:var(--ink);text-decoration:none;clip-path:var(--cut);transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,.7,.2,1);
-  padding:calc(12px * var(--ts,1)) calc(14px * var(--ts,1)) calc(8px * var(--ts,1)) calc(16px * var(--ts,1));
+  padding:calc(12px * var(--dts,1)) calc(14px * var(--dts,1)) calc(8px * var(--dts,1)) calc(16px * var(--dts,1));
   background:linear-gradient(rgba(95,130,165,.16) 1px,transparent 1px) 0 4px/12px 12px,linear-gradient(90deg,rgba(95,130,165,.16) 1px,transparent 1px) 3px 0/12px 12px,#f6f3ea}
 a.draft-in:hover{transform:rotate(var(--r,0deg)) translateY(-3px)}
 .draft-in::after{content:"";position:absolute;inset:0;background:url(assets/paper.jpg) 30% 60%/420px;mix-blend-mode:multiply;opacity:.4;pointer-events:none}
 .draft .hed,.draft .frag{display:block;position:relative}
-.draft .hed{font-family:var(--hand);font-size:calc(clamp(1.42rem,2vw,1.62rem) * var(--ts,1));line-height:1.02;padding-bottom:3px;
-  background:linear-gradient(var(--ink),var(--ink)) 0 100%/62% 1px no-repeat;padding-right:18px}
+.draft .hed{font-family:var(--hand);font-size:calc(clamp(1.42rem,2vw,1.62rem) * var(--dts,1));line-height:1.02;padding-bottom:3px;
+  background:linear-gradient(var(--ink),var(--ink)) 0 100%/62% 1px no-repeat;padding-right:52px}
 .draft:nth-child(2) .hed{background-size:48% 1px}
 .draft:nth-child(3) .hed{background-size:70% 1px}
-.draft .frag{margin-top:calc(4px * var(--ts,1));font-family:var(--hand);font-size:calc(clamp(1.08rem,1.5vw,1.22rem) * var(--ts,1));line-height:1.08;color:var(--pencil);opacity:.9}
+.draft .frag{margin-top:calc(4px * var(--dts,1));font-family:var(--hand);font-size:calc(clamp(1.08rem,1.5vw,1.22rem) * var(--dts,1));line-height:1.08;color:var(--pencil);opacity:.9}
 .draft .frag s{text-decoration:none;position:relative}
 .draft .frag s::after{content:"";position:absolute;left:-2px;right:-2px;top:52%;height:1.4px;background:var(--pencil);transform:rotate(-4deg);border-radius:1px}
-.draft .note{position:absolute;right:9px;top:calc(9px * var(--ts,1));font-family:var(--typed);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pencil);opacity:.65;transform:rotate(3deg)}
+.draft.done .hed{background-size:0 0}
+.draft.done .frag{color:var(--ink);opacity:.85}
+.draft .read{display:inline-block;position:relative;margin-top:calc(3px * var(--dts,1));font-family:var(--hand);font-size:calc(clamp(1.12rem,1.55vw,1.28rem) * var(--dts,1));color:var(--thread);
+  background:linear-gradient(var(--thread),var(--thread)) 0 92%/0 1.2px no-repeat;transition:background-size .5s cubic-bezier(.3,.7,.2,1)}
+a.draft-in:hover .read,a.draft-in:focus-visible .read{background-size:100% 1.2px}
+.draft.done .note{opacity:.8;color:var(--thread)}
+.draft .note{position:absolute;right:9px;top:calc(9px * var(--dts,1));font-family:var(--typed);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--pencil);opacity:.65;transform:rotate(3deg)}
 .mark{align-self:center;margin:0 0 14px;width:calc(var(--ph,230px) * .36);transform:rotate(-4deg);mix-blend-mode:multiply;opacity:.72}
 .mark img{display:block;width:100%;height:auto}
 .work .sign{font-family:var(--script);font-size:calc(1.35rem * var(--ts,1));line-height:1.3;margin:6px 0 4px;transform:rotate(-2deg);transform-origin:0 50%;color:var(--ink)}
@@ -453,8 +461,14 @@ body.deaf .hush::after{transform:rotate(-40deg) scaleX(1)}
     <article class="page l work" id="p-questions">
       <span class="tag-wrap"><span class="tag">No. 9<span class="dot">·</span>open file</span></span>
       <h2>Questions</h2>
-      <p>A running list of questions I keep coming back to. None of them are finished.</p>
+      <p>A running list of questions I keep coming back to. Most of them are not finished yet.</p>
       <ol class="drafts" data-anchor>
+        <li class="draft done"><a class="draft-in" href="https://iehrhei.github.io/relief/" target="_blank" rel="noopener">
+          <span class="hed">Who Carves the Earth?</span>
+          <span class="frag">Plates, water and life have spent four billion years carving the surface of a planet.</span>
+          <span class="read">read “Relief” →</span>
+          <span class="note">written</span>
+        </a></li>
         <li class="draft"><span class="draft-in">
           <span class="hed">How Do You Make a Living Monument That Glows in the Abyss Forever?</span>
           <span class="frag">Not carved but grown, from creatures that make their own light. We only <s>build</s> shape it, and let them…</span>
@@ -1037,7 +1051,10 @@ function fitPages(){
   // every other page shares one size of hand and one size of picture, like a book set in one type:
   // the largest hand that lets every page fit with pictures no smaller than the floor, then the pictures grow back as one
   const work=pages.filter(p=>p.classList.contains("work")),fits=work.map(overOf);
-  const all=(ts,ph)=>{work.forEach(p=>{set(p,"--ts",ts);set(p,"--ph",ph+"px")});return fits.every(f=>!f())};
+  // the Questions sheets are notes: they may write a little smaller themselves before the whole book has to
+  const all=(ts,ph)=>{work.forEach(p=>{set(p,"--ts",ts);set(p,"--ph",ph+"px");p.style.removeProperty("--ds")});
+    return fits.every((f,i)=>{if(!f())return true;const p=work[i];if(!p.querySelector(".drafts"))return false;
+      for(let ds=.96;ds>=.72;ds=+(ds-.04).toFixed(2)){set(p,"--ds",ds);if(!f())return true}return false})};
   let hand=.52,pic=110,found=false;
   // the hand stays readable first; only on very short screens does it go smaller than that
   for(const least of [.74,.52]){
